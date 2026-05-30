@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Arrows – Puzzle Escape",
+    "slug": "arrows-puzzle-escape",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "arrows",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0E1116",
+    "newArchEnabled": true,
+    "icon": "./src/assets/images/icon.png",
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.arrowspuzzle.escape",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#0E1116"
+      }
+    },
+    "plugins": [
+      "expo-dev-client",
+      "expo-audio",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#0E1116"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 24,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35
+          }
+        }
+      ],
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713"
+        }
+      ]
+    ]
+  }
+}
