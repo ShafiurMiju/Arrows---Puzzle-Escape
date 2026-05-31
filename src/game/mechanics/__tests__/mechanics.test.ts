@@ -14,6 +14,7 @@ const result = (over: Partial<LevelResult> = {}): LevelResult => ({
   timeSec: 10,
   stars: 3,
   score: 1000,
+  usedHint: false,
   ...over,
 });
 

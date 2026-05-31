@@ -19,7 +19,7 @@ import { useBoard, useSimulationPlayback } from '../hooks';
 import { ads } from '../services/ads';
 import { audio } from '../services/audio';
 import { haptics } from '../services/haptics';
-import { useProgressStore } from '../store';
+import { useAchievementsStore, useProgressStore } from '../store';
 import { SimulationStatus } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
 
@@ -33,10 +33,12 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
 
   const { grid, moves, canUndo, rotateTile, setArrowDirection, undo, reset } = useBoard(level);
   const recordResult = useProgressStore((s) => s.recordResult);
+  const syncAchievements = useAchievementsStore((s) => s.sync);
 
   const [geometry, setGeometry] = useState<BoardGeometry | null>(null);
   const { status, animatedStyle, play, pause, resume, stop } = useSimulationPlayback(geometry);
   const startedAt = useRef(Date.now());
+  const hintUsedRef = useRef(false);
 
   // Stop any running playback if we leave the screen.
   useEffect(() => stop, [stop]);
@@ -66,13 +68,34 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
         const rating = { movesUsed, timeSec, thresholds: level.stars };
         const stars = computeStars(rating);
         const score = computeScore(rating);
-        recordResult({ levelId, won: true, movesUsed, timeSec, stars, score });
+        recordResult({
+          levelId,
+          won: true,
+          movesUsed,
+          timeSec,
+          stars,
+          score,
+          usedHint: hintUsedRef.current,
+        });
+        syncAchievements(useProgressStore.getState().progress, Date.now());
         navigation.navigate('Victory', { levelId, stars, moves: movesUsed, timeSec, score });
       } else {
         navigation.navigate('Failure', { levelId, reason: result.failureReason });
       }
     });
-  }, [status, pause, resume, play, grid, moves, level, levelId, navigation, recordResult]);
+  }, [
+    status,
+    pause,
+    resume,
+    play,
+    grid,
+    moves,
+    level,
+    levelId,
+    navigation,
+    recordResult,
+    syncAchievements,
+  ]);
 
   const handleRotate = useCallback(
     (tileId: string) => {
@@ -87,6 +110,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     stop();
     reset();
     startedAt.current = Date.now();
+    hintUsedRef.current = false;
   }, [stop, reset]);
 
   // Watch a rewarded ad to reveal one recommended move (applied to the board).
@@ -98,6 +122,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     if (!outcome.granted) {
       return;
     }
+    hintUsedRef.current = true;
     const solution = solveLevel(level);
     if (!solution.solved || !solution.configuration) {
       return;

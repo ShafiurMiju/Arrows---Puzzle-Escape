@@ -4,16 +4,24 @@
  * level/progress split so the catalog can grow without breaking saves.
  */
 
+/**
+ * Declarative unlock condition, evaluated against the player's progress. Keeping
+ * it as data (not a function) means the catalog stays pure/serializable and the
+ * evaluator is a single pure function.
+ */
+export type AchievementCondition =
+  | { readonly kind: 'levelsCompleted'; readonly count: number }
+  | { readonly kind: 'totalStars'; readonly count: number }
+  | { readonly kind: 'threeStarLevels'; readonly count: number }
+  | { readonly kind: 'hintFreeLevels'; readonly count: number };
+
 /** Static catalog entry describing one achievement. */
 export interface AchievementDefinition {
   readonly id: string;
   readonly title: string;
   readonly description: string;
-  /**
-   * For incremental achievements (e.g. "Complete 50 levels"), the count the
-   * player must reach. Omitted for one-shot achievements (e.g. "First Victory").
-   */
-  readonly target?: number;
+  /** The condition that unlocks it; `condition.count` also drives the progress bar. */
+  readonly condition: AchievementCondition;
 }
 
 /** Persisted unlock + progress state for a single achievement. */
@@ -22,6 +30,6 @@ export interface AchievementProgress {
   readonly unlocked: boolean;
   /** Epoch milliseconds when unlocked, or null if still locked. */
   readonly unlockedAt: number | null;
-  /** Current count toward {@link AchievementDefinition.target}. */
+  /** 0..1 progress toward the unlock condition. */
   readonly progress: number;
 }

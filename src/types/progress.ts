@@ -15,6 +15,8 @@ export interface LevelProgress {
   readonly bestMoves: number | null;
   /** Fastest winning time in seconds, or null if never solved. */
   readonly bestTimeSec: number | null;
+  /** True if the level was ever completed without using a hint. */
+  readonly completedWithoutHint: boolean;
 }
 
 /** Aggregate progression persisted across sessions. */

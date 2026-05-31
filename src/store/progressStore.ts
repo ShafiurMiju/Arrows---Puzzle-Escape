@@ -6,7 +6,7 @@ import { LEVEL_COUNT } from '../game/levels';
 import { applyLevelResult, completedLevelIds, emptyProgress } from '../game/mechanics';
 import { isLevelUnlocked } from '../game/levels';
 import { zustandStateStorage } from '../services/storage';
-import { LevelResult, ProgressState } from '../types';
+import { LevelProgress, LevelResult, ProgressState } from '../types';
 
 interface ProgressStore {
   progress: ProgressState;
@@ -37,6 +37,33 @@ export const useProgressStore = create<ProgressStore>()(
       name: StorageKeys.progress,
       storage: createJSONStorage(() => zustandStateStorage),
       partialize: (state) => ({ progress: state.progress }),
+      // v1 added LevelProgress.completedWithoutHint. Hints did not exist before,
+      // so every legacy completion was necessarily hint-free — backfill it from
+      // `completed` rather than defaulting to false (which would under-count the
+      // "Pure Logic" achievement for returning players).
+      version: 1,
+      migrate: (persisted, version) => {
+        const state = (persisted ?? {}) as { progress?: ProgressState };
+        if (!state.progress || version >= 1) {
+          return state as unknown as ProgressStore;
+        }
+        const levels: Record<number, LevelProgress> = {};
+        for (const key of Object.keys(state.progress.levels)) {
+          const id = Number(key);
+          const entry = state.progress.levels[id] as
+            | (LevelProgress & { completedWithoutHint?: boolean })
+            | undefined;
+          if (entry) {
+            levels[id] = {
+              ...entry,
+              completedWithoutHint: entry.completedWithoutHint ?? entry.completed,
+            };
+          }
+        }
+        return {
+          progress: { ...state.progress, levels },
+        } as unknown as ProgressStore;
+      },
       onRehydrateStorage: () => () => {
         useProgressStore.setState({ hasHydrated: true });
       },

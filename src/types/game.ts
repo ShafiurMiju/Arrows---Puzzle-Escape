@@ -92,4 +92,6 @@ export interface LevelResult {
   /** 0 (lost) … 3 (perfect). */
   readonly stars: number;
   readonly score: number;
+  /** Whether the player used a (rewarded-ad) hint during this attempt. */
+  readonly usedHint: boolean;
 }

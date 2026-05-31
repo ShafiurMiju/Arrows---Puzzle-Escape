@@ -42,6 +42,7 @@ export function applyLevelResult(
       previous?.bestMoves != null ? Math.min(previous.bestMoves, result.movesUsed) : result.movesUsed,
     bestTimeSec:
       previous?.bestTimeSec != null ? Math.min(previous.bestTimeSec, result.timeSec) : result.timeSec,
+    completedWithoutHint: (previous?.completedWithoutHint ?? false) || !result.usedHint,
   };
 
   const levels: ProgressState['levels'] = { ...progress.levels, [result.levelId]: entry };
