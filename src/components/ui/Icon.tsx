@@ -27,6 +27,14 @@ export type IconName =
   | 'sound'
   | 'vibrate'
   | 'check'
+  | 'flag'
+  | 'flash'
+  | 'snow'
+  | 'swap'
+  | 'rotate'
+  | 'oneway'
+  | 'breakable'
+  | 'toggle'
   | 'arrow';
 
 const GLYPHS: Record<IconName, keyof typeof Ionicons.glyphMap> = {
@@ -48,6 +56,14 @@ const GLYPHS: Record<IconName, keyof typeof Ionicons.glyphMap> = {
   sound: 'volume-high',
   vibrate: 'phone-portrait',
   check: 'checkmark',
+  flag: 'flag',
+  flash: 'flash',
+  snow: 'snow',
+  swap: 'swap-horizontal',
+  rotate: 'sync',
+  oneway: 'caret-forward-circle',
+  breakable: 'square-outline',
+  toggle: 'toggle',
   arrow: 'arrow-forward',
 };
 
