@@ -11,6 +11,8 @@ export interface UseBoard {
   /** Whether there is a move to undo. */
   canUndo: boolean;
   rotateTile: (tileId: string) => void;
+  /** Set a specific arrow's heading directly (used by the hint system). */
+  setArrowDirection: (tileId: string, direction: Direction) => void;
   undo: () => void;
   reset: () => void;
 }
@@ -60,6 +62,34 @@ export function useBoard(level: LevelDefinition): UseBoard {
     });
   }, []);
 
+  const setArrowDirection = useCallback((tileId: string, direction: Direction) => {
+    setState((prev) => {
+      let previousDirection: Direction | null = null;
+      const grid = prev.grid.map((row) =>
+        row.map((tile) => {
+          if (
+            tile.id === tileId &&
+            tile.type === TileType.Arrow &&
+            tile.rotatable &&
+            tile.direction !== direction
+          ) {
+            previousDirection = tile.direction;
+            return { ...tile, direction };
+          }
+          return tile;
+        }),
+      );
+      if (previousDirection === null) {
+        return prev; // already at that heading, or not a rotatable arrow
+      }
+      return {
+        grid,
+        moves: prev.moves + 1,
+        history: [...prev.history, { tileId, previousDirection }],
+      };
+    });
+  }, []);
+
   const undo = useCallback(() => {
     setState((prev) => {
       const last = prev.history[prev.history.length - 1];
@@ -88,6 +118,7 @@ export function useBoard(level: LevelDefinition): UseBoard {
     moves: state.moves,
     canUndo: state.history.length > 0,
     rotateTile,
+    setArrowDirection,
     undo,
     reset,
   };

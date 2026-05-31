@@ -5,19 +5,29 @@ import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { AppText, Button, Card, StarRow } from '../components';
 import { palette, spacing } from '../constants';
 import { getNextLevelId } from '../game/levels';
+import { ads } from '../services/ads';
 import { audio } from '../services/audio';
 import { haptics } from '../services/haptics';
+import { useProgressStore } from '../store';
 import type { RootStackScreenProps } from '../navigation/types';
 import { formatTime } from '../utils';
 
 export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victory'>) {
   const { levelId, stars, moves, timeSec, score } = route.params;
   const nextLevelId = getNextLevelId(levelId);
+  const completedCount = useProgressStore((s) => s.progress.completedCount);
 
   useEffect(() => {
     audio.playEffect('victory');
     haptics.trigger('success');
   }, []);
+
+  // Show an interstitial (every Nth completed level, unless ads are removed)
+  // as the player leaves the victory screen.
+  const leaveTo = (navigate: () => void) => {
+    ads.maybeShowInterstitial(completedCount);
+    navigate();
+  };
 
   return (
     <Animated.View style={styles.overlay} entering={FadeIn.duration(180)}>
@@ -43,14 +53,14 @@ export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victo
                 label="Next Level"
                 icon="next"
                 fullWidth
-                onPress={() => navigation.replace('Game', { levelId: nextLevelId })}
+                onPress={() => leaveTo(() => navigation.replace('Game', { levelId: nextLevelId }))}
               />
             ) : null}
             <Button
               label="Level Select"
               variant="secondary"
               fullWidth
-              onPress={() => navigation.navigate('LevelSelect')}
+              onPress={() => leaveTo(() => navigation.navigate('LevelSelect'))}
             />
           </View>
         </Card>

@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { RootNavigator } from './navigation/RootNavigator';
+import { ads } from './services/ads';
 import { audio } from './services/audio';
 import { haptics } from './services/haptics';
 import { useProgressStore, useSettingsStore } from './store';
@@ -37,13 +38,16 @@ export default function App() {
       return undefined;
     }
     let active = true;
-    audio.init().then(() => {
+    Promise.all([audio.init(), ads.init()]).then(() => {
       if (!active) {
         return;
       }
       audio.setSoundEnabled(settings.soundEnabled);
       haptics.setEnabled(settings.vibrationEnabled);
       audio.setMusicEnabled(settings.musicEnabled);
+      ads.setAdsRemoved(settings.removeAds);
+      ads.preloadInterstitial();
+      ads.preloadRewarded();
     });
     return () => {
       active = false;
@@ -60,7 +64,14 @@ export default function App() {
     audio.setSoundEnabled(settings.soundEnabled);
     haptics.setEnabled(settings.vibrationEnabled);
     audio.setMusicEnabled(settings.musicEnabled);
-  }, [isReady, settings.soundEnabled, settings.vibrationEnabled, settings.musicEnabled]);
+    ads.setAdsRemoved(settings.removeAds);
+  }, [
+    isReady,
+    settings.soundEnabled,
+    settings.vibrationEnabled,
+    settings.musicEnabled,
+    settings.removeAds,
+  ]);
 
   if (!isReady) {
     return null; // native splash remains visible while stores hydrate

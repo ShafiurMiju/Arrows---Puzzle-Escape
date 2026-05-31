@@ -1,3 +1,4 @@
-/** Barrel for cross-cutting game rules: rating/scoring and progress folding. */
+/** Barrel for cross-cutting game rules: rating/scoring, progress, hints. */
 export * from './rating';
 export * from './progress';
+export * from './hint';

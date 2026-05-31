@@ -13,9 +13,10 @@ import {
 } from '../components';
 import { palette, spacing } from '../constants';
 import { findStart, simulateGrid } from '../game/engine';
-import { getFirstLevelId, getLevel, getLevelOrThrow } from '../game/levels';
-import { computeScore, computeStars } from '../game/mechanics';
+import { getFirstLevelId, getLevel, getLevelOrThrow, solveLevel } from '../game/levels';
+import { computeScore, computeStars, findHint } from '../game/mechanics';
 import { useBoard, useSimulationPlayback } from '../hooks';
+import { ads } from '../services/ads';
 import { audio } from '../services/audio';
 import { haptics } from '../services/haptics';
 import { useProgressStore } from '../store';
@@ -30,7 +31,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     [levelId],
   );
 
-  const { grid, moves, canUndo, rotateTile, undo, reset } = useBoard(level);
+  const { grid, moves, canUndo, rotateTile, setArrowDirection, undo, reset } = useBoard(level);
   const recordResult = useProgressStore((s) => s.recordResult);
 
   const [geometry, setGeometry] = useState<BoardGeometry | null>(null);
@@ -88,6 +89,27 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     startedAt.current = Date.now();
   }, [stop, reset]);
 
+  // Watch a rewarded ad to reveal one recommended move (applied to the board).
+  const handleHint = useCallback(async () => {
+    if (status !== 'idle') {
+      return;
+    }
+    const outcome = await ads.showRewarded('hint');
+    if (!outcome.granted) {
+      return;
+    }
+    const solution = solveLevel(level);
+    if (!solution.solved || !solution.configuration) {
+      return;
+    }
+    const hint = findHint(grid, solution.configuration);
+    if (hint) {
+      setArrowDirection(hint.tileId, hint.direction);
+      audio.playEffect('place');
+      haptics.trigger('success');
+    }
+  }, [status, level, grid, setArrowDirection]);
+
   const traveler =
     geometry !== null ? (
       <Animated.View
@@ -144,7 +166,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
           onPlayPause={handlePlayPause}
           onUndo={undo}
           onRestart={handleRestart}
-          onHint={() => undefined}
+          onHint={handleHint}
         />
       </View>
     </ScreenContainer>
