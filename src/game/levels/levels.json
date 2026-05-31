@@ -1,0 +1,7131 @@
+[
+  {
+    "id": 1,
+    "name": "Warp",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c1-start",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c1-arrow",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "TELEPORTER",
+        "id": "c1-tpA",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "channel": 1
+      },
+      {
+        "type": "TELEPORTER",
+        "id": "c1-tpB",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "channel": 1
+      },
+      {
+        "type": "EXIT",
+        "id": "c1-exit",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 2,
+    "name": "One Way",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c2-start",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c2-arrow",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ONE_WAY",
+        "id": "c2-ow",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "allowedEntry": [
+          "DOWN"
+        ]
+      },
+      {
+        "type": "EXIT",
+        "id": "c2-exit",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 3,
+    "name": "Fragile",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c3-start",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c3-arrow",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "BREAKABLE",
+        "id": "c3-brk",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      },
+      {
+        "type": "EXIT",
+        "id": "c3-exit",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 4,
+    "name": "The Switch",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c4-start",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c4-arrow",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "SWITCH",
+        "id": "c4-sw",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "switchGroup": "gate",
+        "initiallyActive": true
+      },
+      {
+        "type": "WALL",
+        "id": "c4-wall",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "switchGroup": "gate"
+      },
+      {
+        "type": "EXIT",
+        "id": "c4-exit",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 5,
+    "name": "Boost",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c5-start",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c5-arrow",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "SPEED",
+        "id": "c5-spd",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "multiplier": 2
+      },
+      {
+        "type": "WALL",
+        "id": "c5-wall",
+        "position": {
+          "row": 3,
+          "col": 2
+        }
+      },
+      {
+        "type": "EXIT",
+        "id": "c5-exit",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 6,
+    "name": "Spin",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "c6-start",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "ARROW",
+        "id": "c6-arrow",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ROTATE",
+        "id": "c6-rot",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "effect": {
+          "kind": "TURN",
+          "sense": "CW"
+        }
+      },
+      {
+        "type": "EXIT",
+        "id": "c6-exit",
+        "position": {
+          "row": 2,
+          "col": 0
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 7,
+    "name": "EASY 7",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l7-start-1",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l7-exit-2",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l7-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 1,
+    "stars": {
+      "threeStarMoves": 1,
+      "twoStarMoves": 3
+    }
+  },
+  {
+    "id": 8,
+    "name": "EASY 8",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l8-start-1",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l8-exit-2",
+        "position": {
+          "row": 2,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l8-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 9,
+    "name": "EASY 9",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l9-start-1",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l9-exit-2",
+        "position": {
+          "row": 0,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l9-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,2",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 10,
+    "name": "EASY 10",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l10-start-1",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l10-exit-2",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l10-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l10-wall-4",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 1,
+    "stars": {
+      "threeStarMoves": 1,
+      "twoStarMoves": 3
+    }
+  },
+  {
+    "id": 11,
+    "name": "EASY 11",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l11-start-1",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l11-exit-2",
+        "position": {
+          "row": 3,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l11-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l11-wall-4",
+        "position": {
+          "row": 0,
+          "col": 4
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 12,
+    "name": "EASY 12",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l12-start-1",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l12-exit-2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l12-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l12-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,2",
+        "position": {
+          "row": 3,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 13,
+    "name": "EASY 13",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l13-start-1",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l13-exit-2",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l13-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 14,
+    "name": "EASY 14",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l14-start-1",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l14-exit-2",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l14-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l14-wall-4",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,3",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 15,
+    "name": "EASY 15",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l15-start-1",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l15-exit-2",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l15-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 16,
+    "name": "EASY 16",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l16-start-1",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l16-exit-2",
+        "position": {
+          "row": 4,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l16-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l16-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 17,
+    "name": "EASY 17",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l17-start-1",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l17-exit-2",
+        "position": {
+          "row": 4,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l17-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 18,
+    "name": "EASY 18",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l18-start-1",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l18-exit-2",
+        "position": {
+          "row": 0,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l18-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l18-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l18-wall-5",
+        "position": {
+          "row": 4,
+          "col": 4
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,3",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 19,
+    "name": "EASY 19",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l19-start-1",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l19-exit-2",
+        "position": {
+          "row": 3,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l19-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 20,
+    "name": "EASY 20",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l20-start-1",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l20-exit-2",
+        "position": {
+          "row": 3,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l20-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,3",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 21,
+    "name": "EASY 21",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l21-start-1",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l21-exit-2",
+        "position": {
+          "row": 1,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l21-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l21-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l21-wall-5",
+        "position": {
+          "row": 3,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,3",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 22,
+    "name": "EASY 22",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l22-start-1",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l22-exit-2",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l22-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l22-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,3",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 23,
+    "name": "EASY 23",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l23-start-1",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l23-exit-2",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l23-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,3",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      }
+    ],
+    "par": 1,
+    "stars": {
+      "threeStarMoves": 1,
+      "twoStarMoves": 3
+    }
+  },
+  {
+    "id": 24,
+    "name": "EASY 24",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l24-start-1",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l24-exit-2",
+        "position": {
+          "row": 4,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l24-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l24-wall-4",
+        "position": {
+          "row": 4,
+          "col": 3
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 25,
+    "name": "EASY 25",
+    "difficulty": "EASY",
+    "size": {
+      "rows": 5,
+      "cols": 5
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l25-start-1",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l25-exit-2",
+        "position": {
+          "row": 3,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l25-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l25-wall-4",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 26,
+    "name": "MEDIUM 26",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l26-start-1",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l26-exit-2",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l26-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l26-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l26-wall-5",
+        "position": {
+          "row": 1,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,5",
+        "position": {
+          "row": 3,
+          "col": 5
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 27,
+    "name": "MEDIUM 27",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l27-start-1",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l27-exit-2",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l27-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l27-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l27-wall-5",
+        "position": {
+          "row": 0,
+          "col": 0
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l27-wall-6",
+        "position": {
+          "row": 4,
+          "col": 1
+        }
+      }
+    ],
+    "par": 2,
+    "stars": {
+      "threeStarMoves": 2,
+      "twoStarMoves": 4
+    }
+  },
+  {
+    "id": 28,
+    "name": "MEDIUM 28",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l28-start-1",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l28-exit-2",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l28-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l28-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l28-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l28-wall-6",
+        "position": {
+          "row": 3,
+          "col": 2
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 29,
+    "name": "MEDIUM 29",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l29-start-1",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l29-exit-2",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l29-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l29-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l29-wall-5",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 30,
+    "name": "MEDIUM 30",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l30-start-1",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l30-exit-2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l30-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l30-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l30-wall-5",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 31,
+    "name": "MEDIUM 31",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l31-start-1",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l31-exit-2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l31-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l31-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l31-wall-5",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 32,
+    "name": "MEDIUM 32",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l32-start-1",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l32-exit-2",
+        "position": {
+          "row": 4,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l32-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l32-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l32-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 33,
+    "name": "MEDIUM 33",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l33-start-1",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l33-exit-2",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l33-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l33-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l33-wall-5",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l33-wall-6",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 34,
+    "name": "MEDIUM 34",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l34-start-1",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l34-exit-2",
+        "position": {
+          "row": 4,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l34-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l34-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,5",
+        "position": {
+          "row": 2,
+          "col": 5
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 35,
+    "name": "MEDIUM 35",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l35-start-1",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l35-exit-2",
+        "position": {
+          "row": 0,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l35-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l35-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l35-wall-5",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l35-wall-6",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,0",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 36,
+    "name": "MEDIUM 36",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l36-start-1",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l36-exit-2",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l36-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l36-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l36-wall-5",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l36-wall-6",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,0",
+        "position": {
+          "row": 2,
+          "col": 0
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 37,
+    "name": "MEDIUM 37",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l37-start-1",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l37-exit-2",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l37-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l37-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,3",
+        "position": {
+          "row": 3,
+          "col": 3
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 38,
+    "name": "MEDIUM 38",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l38-start-1",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l38-exit-2",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l38-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l38-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l38-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 39,
+    "name": "MEDIUM 39",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l39-start-1",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l39-exit-2",
+        "position": {
+          "row": 0,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l39-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l39-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l39-wall-5",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,3",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 40,
+    "name": "MEDIUM 40",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l40-start-1",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l40-exit-2",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l40-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l40-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l40-wall-5",
+        "position": {
+          "row": 3,
+          "col": 3
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,0",
+        "position": {
+          "row": 3,
+          "col": 0
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 41,
+    "name": "MEDIUM 41",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l41-start-1",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l41-exit-2",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l41-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l41-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l41-wall-5",
+        "position": {
+          "row": 1,
+          "col": 1
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 42,
+    "name": "MEDIUM 42",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l42-start-1",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l42-exit-2",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l42-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l42-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l42-wall-5",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 43,
+    "name": "MEDIUM 43",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l43-start-1",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l43-exit-2",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l43-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l43-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,4",
+        "position": {
+          "row": 1,
+          "col": 4
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 44,
+    "name": "MEDIUM 44",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l44-start-1",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l44-exit-2",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l44-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l44-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l44-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l44-wall-6",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 45,
+    "name": "MEDIUM 45",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l45-start-1",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l45-exit-2",
+        "position": {
+          "row": 5,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l45-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l45-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l45-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l45-wall-6",
+        "position": {
+          "row": 1,
+          "col": 1
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 46,
+    "name": "MEDIUM 46",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l46-start-1",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l46-exit-2",
+        "position": {
+          "row": 0,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l46-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l46-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l46-wall-5",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,1",
+        "position": {
+          "row": 0,
+          "col": 1
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 47,
+    "name": "MEDIUM 47",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l47-start-1",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l47-exit-2",
+        "position": {
+          "row": 2,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l47-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l47-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,5",
+        "position": {
+          "row": 4,
+          "col": 5
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 48,
+    "name": "MEDIUM 48",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l48-start-1",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l48-exit-2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l48-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l48-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l48-wall-5",
+        "position": {
+          "row": 4,
+          "col": 5
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 49,
+    "name": "MEDIUM 49",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l49-start-1",
+        "position": {
+          "row": 4,
+          "col": 0
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l49-exit-2",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l49-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l49-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 50,
+    "name": "MEDIUM 50",
+    "difficulty": "MEDIUM",
+    "size": {
+      "rows": 6,
+      "cols": 6
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l50-start-1",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l50-exit-2",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l50-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l50-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l50-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l50-wall-6",
+        "position": {
+          "row": 5,
+          "col": 1
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 51,
+    "name": "HARD 51",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l51-start-1",
+        "position": {
+          "row": 1,
+          "col": 6
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l51-exit-2",
+        "position": {
+          "row": 3,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l51-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l51-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l51-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,1",
+        "position": {
+          "row": 1,
+          "col": 1
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 52,
+    "name": "HARD 52",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l52-start-1",
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l52-exit-2",
+        "position": {
+          "row": 6,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l52-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l52-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l52-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l52-arrow-6",
+        "position": {
+          "row": 6,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l52-wall-7",
+        "position": {
+          "row": 5,
+          "col": 1
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 53,
+    "name": "HARD 53",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l53-start-1",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l53-exit-2",
+        "position": {
+          "row": 5,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l53-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l53-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l53-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l53-wall-6",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l53-wall-7",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,4",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 54,
+    "name": "HARD 54",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l54-start-1",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l54-exit-2",
+        "position": {
+          "row": 3,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l54-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l54-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l54-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l54-wall-6",
+        "position": {
+          "row": 4,
+          "col": 5
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l54-wall-7",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,1",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 55,
+    "name": "HARD 55",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l55-start-1",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l55-exit-2",
+        "position": {
+          "row": 6,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l55-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l55-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l55-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 56,
+    "name": "HARD 56",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l56-start-1",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l56-exit-2",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l56-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l56-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l56-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 57,
+    "name": "HARD 57",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l57-start-1",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l57-exit-2",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l57-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l57-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l57-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l57-wall-6",
+        "position": {
+          "row": 0,
+          "col": 1
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 58,
+    "name": "HARD 58",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l58-start-1",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l58-exit-2",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l58-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l58-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l58-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l58-arrow-6",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l58-wall-7",
+        "position": {
+          "row": 6,
+          "col": 4
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l58-wall-8",
+        "position": {
+          "row": 6,
+          "col": 1
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 59,
+    "name": "HARD 59",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l59-start-1",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l59-exit-2",
+        "position": {
+          "row": 4,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l59-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l59-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l59-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 6
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l59-wall-6",
+        "position": {
+          "row": 5,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,1",
+        "position": {
+          "row": 4,
+          "col": 1
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 60,
+    "name": "HARD 60",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l60-start-1",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l60-exit-2",
+        "position": {
+          "row": 6,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l60-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l60-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l60-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l60-wall-6",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l60-wall-7",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l60-wall-8",
+        "position": {
+          "row": 5,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-5,2",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 61,
+    "name": "HARD 61",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l61-start-1",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l61-exit-2",
+        "position": {
+          "row": 4,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l61-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l61-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l61-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l61-wall-6",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l61-wall-7",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l61-wall-8",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,2",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 62,
+    "name": "HARD 62",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l62-start-1",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l62-exit-2",
+        "position": {
+          "row": 2,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l62-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 0
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l62-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l62-arrow-5",
+        "position": {
+          "row": 6,
+          "col": 5
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,0",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      }
+    ],
+    "par": 3,
+    "stars": {
+      "threeStarMoves": 3,
+      "twoStarMoves": 5
+    }
+  },
+  {
+    "id": 63,
+    "name": "HARD 63",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l63-start-1",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l63-exit-2",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l63-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l63-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l63-arrow-5",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l63-wall-6",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 64,
+    "name": "HARD 64",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l64-start-1",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l64-exit-2",
+        "position": {
+          "row": 4,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l64-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l64-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l64-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l64-wall-6",
+        "position": {
+          "row": 1,
+          "col": 6
+        }
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 65,
+    "name": "HARD 65",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l65-start-1",
+        "position": {
+          "row": 2,
+          "col": 6
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l65-exit-2",
+        "position": {
+          "row": 1,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l65-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l65-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l65-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,6",
+        "position": {
+          "row": 3,
+          "col": 6
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 66,
+    "name": "HARD 66",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l66-start-1",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l66-exit-2",
+        "position": {
+          "row": 2,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l66-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l66-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l66-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,3",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 67,
+    "name": "HARD 67",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l67-start-1",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l67-exit-2",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l67-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l67-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l67-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l67-arrow-6",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l67-wall-7",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      }
+    ],
+    "par": 11,
+    "stars": {
+      "threeStarMoves": 11,
+      "twoStarMoves": 17
+    }
+  },
+  {
+    "id": 68,
+    "name": "HARD 68",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l68-start-1",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l68-exit-2",
+        "position": {
+          "row": 6,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l68-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l68-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l68-arrow-5",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,5",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 69,
+    "name": "HARD 69",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l69-start-1",
+        "position": {
+          "row": 4,
+          "col": 5
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l69-exit-2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l69-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l69-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l69-arrow-5",
+        "position": {
+          "row": 6,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l69-arrow-6",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,4",
+        "position": {
+          "row": 4,
+          "col": 4
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 70,
+    "name": "HARD 70",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l70-start-1",
+        "position": {
+          "row": 4,
+          "col": 6
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l70-exit-2",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l70-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l70-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l70-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 4,
+    "stars": {
+      "threeStarMoves": 4,
+      "twoStarMoves": 6
+    }
+  },
+  {
+    "id": 71,
+    "name": "HARD 71",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l71-start-1",
+        "position": {
+          "row": 1,
+          "col": 6
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l71-exit-2",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l71-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l71-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l71-arrow-5",
+        "position": {
+          "row": 6,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l71-wall-6",
+        "position": {
+          "row": 2,
+          "col": 0
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l71-wall-7",
+        "position": {
+          "row": 5,
+          "col": 1
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l71-wall-8",
+        "position": {
+          "row": 5,
+          "col": 3
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 72,
+    "name": "HARD 72",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l72-start-1",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l72-exit-2",
+        "position": {
+          "row": 5,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l72-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l72-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l72-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l72-wall-6",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l72-wall-7",
+        "position": {
+          "row": 3,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,3",
+        "position": {
+          "row": 0,
+          "col": 3
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 73,
+    "name": "HARD 73",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l73-start-1",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l73-exit-2",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l73-arrow-3",
+        "position": {
+          "row": 6,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l73-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l73-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l73-wall-6",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,2",
+        "position": {
+          "row": 3,
+          "col": 2
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 74,
+    "name": "HARD 74",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l74-start-1",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l74-exit-2",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l74-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l74-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l74-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 75,
+    "name": "HARD 75",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l75-start-1",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l75-exit-2",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l75-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l75-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l75-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 76,
+    "name": "HARD 76",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l76-start-1",
+        "position": {
+          "row": 3,
+          "col": 6
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l76-exit-2",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l76-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l76-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l76-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l76-arrow-6",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      }
+    ],
+    "par": 11,
+    "stars": {
+      "threeStarMoves": 11,
+      "twoStarMoves": 17
+    }
+  },
+  {
+    "id": 77,
+    "name": "HARD 77",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l77-start-1",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l77-exit-2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l77-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l77-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l77-arrow-5",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l77-wall-6",
+        "position": {
+          "row": 1,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l77-wall-7",
+        "position": {
+          "row": 4,
+          "col": 5
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 78,
+    "name": "HARD 78",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l78-start-1",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l78-exit-2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l78-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l78-arrow-4",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l78-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,4",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 79,
+    "name": "HARD 79",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l79-start-1",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l79-exit-2",
+        "position": {
+          "row": 3,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l79-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l79-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l79-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l79-wall-6",
+        "position": {
+          "row": 1,
+          "col": 6
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 80,
+    "name": "HARD 80",
+    "difficulty": "HARD",
+    "size": {
+      "rows": 7,
+      "cols": 7
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l80-start-1",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l80-exit-2",
+        "position": {
+          "row": 2,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l80-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l80-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l80-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l80-wall-6",
+        "position": {
+          "row": 2,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-5,2",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      }
+    ],
+    "par": 6,
+    "stars": {
+      "threeStarMoves": 6,
+      "twoStarMoves": 9
+    }
+  },
+  {
+    "id": 81,
+    "name": "EXPERT 81",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l81-start-1",
+        "position": {
+          "row": 4,
+          "col": 2
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l81-exit-2",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l81-arrow-3",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l81-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l81-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l81-arrow-6",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l81-arrow-7",
+        "position": {
+          "row": 1,
+          "col": 6
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l81-wall-8",
+        "position": {
+          "row": 3,
+          "col": 7
+        }
+      }
+    ],
+    "par": 1,
+    "stars": {
+      "threeStarMoves": 1,
+      "twoStarMoves": 3
+    }
+  },
+  {
+    "id": 82,
+    "name": "EXPERT 82",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l82-start-1",
+        "position": {
+          "row": 7,
+          "col": 5
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l82-exit-2",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l82-arrow-3",
+        "position": {
+          "row": 7,
+          "col": 7
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l82-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 7
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l82-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l82-arrow-6",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l82-wall-7",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l82-wall-8",
+        "position": {
+          "row": 6,
+          "col": 5
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-5,7",
+        "position": {
+          "row": 5,
+          "col": 7
+        }
+      }
+    ],
+    "par": 7,
+    "stars": {
+      "threeStarMoves": 7,
+      "twoStarMoves": 11
+    }
+  },
+  {
+    "id": 83,
+    "name": "EXPERT 83",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l83-start-1",
+        "position": {
+          "row": 6,
+          "col": 7
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l83-exit-2",
+        "position": {
+          "row": 1,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l83-arrow-3",
+        "position": {
+          "row": 6,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l83-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l83-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l83-arrow-6",
+        "position": {
+          "row": 1,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-6,2",
+        "position": {
+          "row": 6,
+          "col": 2
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 84,
+    "name": "EXPERT 84",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l84-start-1",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l84-exit-2",
+        "position": {
+          "row": 0,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l84-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l84-arrow-4",
+        "position": {
+          "row": 7,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l84-arrow-5",
+        "position": {
+          "row": 7,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l84-arrow-6",
+        "position": {
+          "row": 4,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l84-arrow-7",
+        "position": {
+          "row": 4,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l84-wall-8",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      }
+    ],
+    "par": 11,
+    "stars": {
+      "threeStarMoves": 11,
+      "twoStarMoves": 17
+    }
+  },
+  {
+    "id": 85,
+    "name": "EXPERT 85",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l85-start-1",
+        "position": {
+          "row": 2,
+          "col": 2
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l85-exit-2",
+        "position": {
+          "row": 4,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l85-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l85-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l85-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l85-arrow-6",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l85-wall-7",
+        "position": {
+          "row": 7,
+          "col": 7
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l85-wall-8",
+        "position": {
+          "row": 6,
+          "col": 2
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l85-wall-9",
+        "position": {
+          "row": 1,
+          "col": 6
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,4",
+        "position": {
+          "row": 3,
+          "col": 4
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 86,
+    "name": "EXPERT 86",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l86-start-1",
+        "position": {
+          "row": 1,
+          "col": 7
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l86-exit-2",
+        "position": {
+          "row": 2,
+          "col": 6
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l86-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l86-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l86-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l86-arrow-6",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l86-wall-7",
+        "position": {
+          "row": 7,
+          "col": 2
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 87,
+    "name": "EXPERT 87",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l87-start-1",
+        "position": {
+          "row": 7,
+          "col": 0
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l87-exit-2",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l87-arrow-3",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l87-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l87-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l87-arrow-6",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l87-wall-7",
+        "position": {
+          "row": 0,
+          "col": 5
+        }
+      }
+    ],
+    "par": 9,
+    "stars": {
+      "threeStarMoves": 9,
+      "twoStarMoves": 14
+    }
+  },
+  {
+    "id": 88,
+    "name": "EXPERT 88",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l88-start-1",
+        "position": {
+          "row": 1,
+          "col": 7
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l88-exit-2",
+        "position": {
+          "row": 7,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l88-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l88-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l88-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l88-arrow-6",
+        "position": {
+          "row": 7,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      }
+    ],
+    "par": 1,
+    "stars": {
+      "threeStarMoves": 1,
+      "twoStarMoves": 3
+    }
+  },
+  {
+    "id": 89,
+    "name": "EXPERT 89",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l89-start-1",
+        "position": {
+          "row": 4,
+          "col": 6
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l89-exit-2",
+        "position": {
+          "row": 5,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l89-arrow-3",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l89-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l89-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 3
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l89-arrow-6",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l89-arrow-7",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l89-wall-8",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l89-wall-9",
+        "position": {
+          "row": 7,
+          "col": 2
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 12,
+    "stars": {
+      "threeStarMoves": 12,
+      "twoStarMoves": 18
+    }
+  },
+  {
+    "id": 90,
+    "name": "EXPERT 90",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l90-start-1",
+        "position": {
+          "row": 6,
+          "col": 3
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l90-exit-2",
+        "position": {
+          "row": 4,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l90-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l90-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l90-arrow-5",
+        "position": {
+          "row": 0,
+          "col": 6
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l90-arrow-6",
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-0,4",
+        "position": {
+          "row": 0,
+          "col": 4
+        }
+      }
+    ],
+    "par": 10,
+    "stars": {
+      "threeStarMoves": 10,
+      "twoStarMoves": 15
+    }
+  },
+  {
+    "id": 91,
+    "name": "EXPERT 91",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l91-start-1",
+        "position": {
+          "row": 6,
+          "col": 7
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l91-exit-2",
+        "position": {
+          "row": 0,
+          "col": 1
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l91-arrow-3",
+        "position": {
+          "row": 6,
+          "col": 0
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l91-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l91-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l91-arrow-6",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l91-wall-7",
+        "position": {
+          "row": 7,
+          "col": 1
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l91-wall-8",
+        "position": {
+          "row": 4,
+          "col": 1
+        }
+      }
+    ],
+    "par": 9,
+    "stars": {
+      "threeStarMoves": 9,
+      "twoStarMoves": 14
+    }
+  },
+  {
+    "id": 92,
+    "name": "EXPERT 92",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l92-start-1",
+        "position": {
+          "row": 5,
+          "col": 7
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l92-exit-2",
+        "position": {
+          "row": 6,
+          "col": 5
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l92-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 7
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l92-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 3
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l92-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l92-arrow-6",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l92-arrow-7",
+        "position": {
+          "row": 6,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l92-wall-8",
+        "position": {
+          "row": 7,
+          "col": 0
+        }
+      }
+    ],
+    "par": 9,
+    "stars": {
+      "threeStarMoves": 9,
+      "twoStarMoves": 14
+    }
+  },
+  {
+    "id": 93,
+    "name": "EXPERT 93",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l93-start-1",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l93-exit-2",
+        "position": {
+          "row": 6,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l93-arrow-3",
+        "position": {
+          "row": 7,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l93-arrow-4",
+        "position": {
+          "row": 7,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l93-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l93-arrow-6",
+        "position": {
+          "row": 1,
+          "col": 2
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l93-wall-7",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-5,4",
+        "position": {
+          "row": 5,
+          "col": 4
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 94,
+    "name": "EXPERT 94",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l94-start-1",
+        "position": {
+          "row": 2,
+          "col": 1
+        },
+        "direction": "UP"
+      },
+      {
+        "type": "EXIT",
+        "id": "l94-exit-2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l94-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l94-arrow-4",
+        "position": {
+          "row": 0,
+          "col": 7
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l94-arrow-5",
+        "position": {
+          "row": 1,
+          "col": 7
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l94-arrow-6",
+        "position": {
+          "row": 1,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l94-arrow-7",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l94-wall-8",
+        "position": {
+          "row": 5,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l94-wall-9",
+        "position": {
+          "row": 6,
+          "col": 4
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l94-wall-10",
+        "position": {
+          "row": 2,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l94-wall-11",
+        "position": {
+          "row": 5,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-1,6",
+        "position": {
+          "row": 1,
+          "col": 6
+        }
+      }
+    ],
+    "par": 9,
+    "stars": {
+      "threeStarMoves": 9,
+      "twoStarMoves": 14
+    }
+  },
+  {
+    "id": 95,
+    "name": "EXPERT 95",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l95-start-1",
+        "position": {
+          "row": 1,
+          "col": 3
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l95-exit-2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l95-arrow-3",
+        "position": {
+          "row": 1,
+          "col": 1
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l95-arrow-4",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l95-arrow-5",
+        "position": {
+          "row": 3,
+          "col": 4
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l95-arrow-6",
+        "position": {
+          "row": 2,
+          "col": 4
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l95-wall-7",
+        "position": {
+          "row": 4,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,3",
+        "position": {
+          "row": 3,
+          "col": 3
+        }
+      }
+    ],
+    "par": 5,
+    "stars": {
+      "threeStarMoves": 5,
+      "twoStarMoves": 8
+    }
+  },
+  {
+    "id": 96,
+    "name": "EXPERT 96",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l96-start-1",
+        "position": {
+          "row": 0,
+          "col": 5
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l96-exit-2",
+        "position": {
+          "row": 4,
+          "col": 7
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l96-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l96-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 2
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l96-arrow-5",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l96-arrow-6",
+        "position": {
+          "row": 4,
+          "col": 6
+        },
+        "direction": "UP",
+        "rotatable": true
+      }
+    ],
+    "par": 9,
+    "stars": {
+      "threeStarMoves": 9,
+      "twoStarMoves": 14
+    }
+  },
+  {
+    "id": 97,
+    "name": "EXPERT 97",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l97-start-1",
+        "position": {
+          "row": 3,
+          "col": 6
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l97-exit-2",
+        "position": {
+          "row": 3,
+          "col": 0
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l97-arrow-3",
+        "position": {
+          "row": 5,
+          "col": 6
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l97-arrow-4",
+        "position": {
+          "row": 5,
+          "col": 1
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l97-arrow-5",
+        "position": {
+          "row": 0,
+          "col": 1
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l97-arrow-6",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ICE",
+        "id": "ice-3,1",
+        "position": {
+          "row": 3,
+          "col": 1
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 98,
+    "name": "EXPERT 98",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l98-start-1",
+        "position": {
+          "row": 3,
+          "col": 2
+        },
+        "direction": "LEFT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l98-exit-2",
+        "position": {
+          "row": 0,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l98-arrow-3",
+        "position": {
+          "row": 3,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l98-arrow-4",
+        "position": {
+          "row": 4,
+          "col": 1
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l98-arrow-5",
+        "position": {
+          "row": 4,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l98-arrow-6",
+        "position": {
+          "row": 0,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l98-wall-7",
+        "position": {
+          "row": 1,
+          "col": 2
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l98-wall-8",
+        "position": {
+          "row": 1,
+          "col": 5
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l98-wall-9",
+        "position": {
+          "row": 6,
+          "col": 3
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l98-wall-10",
+        "position": {
+          "row": 5,
+          "col": 0
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-4,2",
+        "position": {
+          "row": 4,
+          "col": 2
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 99,
+    "name": "EXPERT 99",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l99-start-1",
+        "position": {
+          "row": 0,
+          "col": 0
+        },
+        "direction": "RIGHT"
+      },
+      {
+        "type": "EXIT",
+        "id": "l99-exit-2",
+        "position": {
+          "row": 5,
+          "col": 3
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l99-arrow-3",
+        "position": {
+          "row": 0,
+          "col": 7
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l99-arrow-4",
+        "position": {
+          "row": 2,
+          "col": 7
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l99-arrow-5",
+        "position": {
+          "row": 2,
+          "col": 5
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l99-arrow-6",
+        "position": {
+          "row": 3,
+          "col": 5
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l99-arrow-7",
+        "position": {
+          "row": 3,
+          "col": 3
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l99-wall-8",
+        "position": {
+          "row": 6,
+          "col": 4
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l99-wall-9",
+        "position": {
+          "row": 6,
+          "col": 0
+        }
+      },
+      {
+        "type": "WALL",
+        "id": "l99-wall-10",
+        "position": {
+          "row": 1,
+          "col": 0
+        }
+      }
+    ],
+    "par": 8,
+    "stars": {
+      "threeStarMoves": 8,
+      "twoStarMoves": 12
+    }
+  },
+  {
+    "id": 100,
+    "name": "EXPERT 100",
+    "difficulty": "EXPERT",
+    "size": {
+      "rows": 8,
+      "cols": 8
+    },
+    "tiles": [
+      {
+        "type": "START",
+        "id": "l100-start-1",
+        "position": {
+          "row": 5,
+          "col": 4
+        },
+        "direction": "DOWN"
+      },
+      {
+        "type": "EXIT",
+        "id": "l100-exit-2",
+        "position": {
+          "row": 2,
+          "col": 2
+        }
+      },
+      {
+        "type": "ARROW",
+        "id": "l100-arrow-3",
+        "position": {
+          "row": 6,
+          "col": 4
+        },
+        "direction": "DOWN",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l100-arrow-4",
+        "position": {
+          "row": 6,
+          "col": 6
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l100-arrow-5",
+        "position": {
+          "row": 7,
+          "col": 6
+        },
+        "direction": "RIGHT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l100-arrow-6",
+        "position": {
+          "row": 7,
+          "col": 0
+        },
+        "direction": "LEFT",
+        "rotatable": true
+      },
+      {
+        "type": "ARROW",
+        "id": "l100-arrow-7",
+        "position": {
+          "row": 2,
+          "col": 0
+        },
+        "direction": "UP",
+        "rotatable": true
+      },
+      {
+        "type": "WALL",
+        "id": "l100-wall-8",
+        "position": {
+          "row": 2,
+          "col": 4
+        }
+      },
+      {
+        "type": "ICE",
+        "id": "ice-2,1",
+        "position": {
+          "row": 2,
+          "col": 1
+        }
+      }
+    ],
+    "par": 10,
+    "stars": {
+      "threeStarMoves": 10,
+      "twoStarMoves": 15
+    }
+  }
+]

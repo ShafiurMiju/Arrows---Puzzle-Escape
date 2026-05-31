@@ -2,11 +2,14 @@ import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Header, Icon, ScreenContainer, StarRow } from '../components';
 import { palette, radius, spacing } from '../constants';
+import { isLevelUnlocked, LEVEL_COUNT } from '../game/levels';
 import type { RootStackScreenProps } from '../navigation/types';
 
-const TOTAL_LEVELS = 100;
-const UNLOCKED_THROUGH = 12; // placeholder boundary until the progress store (Phase 7)
 const COLUMNS = 4;
+
+// TEMP placeholder progress until the Phase 7 progress store: a few levels open,
+// no stars earned yet. The level list itself is now the real catalog.
+const PLACEHOLDER_COMPLETED = new Set<number>([1, 2, 3, 4, 5, 6, 7]);
 
 interface LevelItem {
   id: number;
@@ -14,12 +17,9 @@ interface LevelItem {
   stars: number;
 }
 
-// TEMP placeholder list; replaced by the level + progress systems (Phase 6/7).
-const LEVELS: LevelItem[] = Array.from({ length: TOTAL_LEVELS }, (_, i) => {
+const LEVELS: LevelItem[] = Array.from({ length: LEVEL_COUNT }, (_, i) => {
   const id = i + 1;
-  const unlocked = id <= UNLOCKED_THROUGH;
-  const stars = unlocked && id < UNLOCKED_THROUGH ? ((id % 3) + 1) : 0;
-  return { id, unlocked, stars };
+  return { id, unlocked: isLevelUnlocked(id, PLACEHOLDER_COMPLETED), stars: 0 };
 });
 
 export function LevelSelectScreen({ navigation }: RootStackScreenProps<'LevelSelect'>) {

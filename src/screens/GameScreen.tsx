@@ -4,15 +4,18 @@ import { StyleSheet, View } from 'react-native';
 import { AppText, Board, GameControls, Header, ScreenContainer } from '../components';
 import { spacing } from '../constants';
 import { simulateGrid } from '../game/engine';
-import { getSampleLevel } from '../game/levels/sampleLevels';
+import { getFirstLevelId, getLevel, getLevelOrThrow } from '../game/levels';
 import { useBoard } from '../hooks';
 import { LevelDefinition, SimulationStatus } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
 
 export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) {
   const { levelId } = route.params;
-  // Sample content until the Phase 6 level catalog; cycles through the samples.
-  const level = useMemo(() => getSampleLevel(levelId), [levelId]);
+  // Load from the level catalog; fall back to the first level for any bad id.
+  const level = useMemo(
+    () => getLevel(levelId) ?? getLevelOrThrow(getFirstLevelId()),
+    [levelId],
+  );
   const { grid, moves, rotateTile, reset } = useBoard(level);
   const startedAt = useRef(Date.now());
 

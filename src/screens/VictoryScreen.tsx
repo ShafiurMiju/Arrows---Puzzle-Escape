@@ -2,15 +2,13 @@ import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, StarRow } from '../components';
 import { palette, spacing } from '../constants';
+import { getNextLevelId } from '../game/levels';
 import type { RootStackScreenProps } from '../navigation/types';
 import { formatTime } from '../utils';
 
-// Placeholder upper bound until the level system (Phase 6) reports the count.
-const LAST_LEVEL_ID = 100;
-
 export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victory'>) {
   const { levelId, stars, moves, timeSec, score } = route.params;
-  const hasNext = levelId < LAST_LEVEL_ID;
+  const nextLevelId = getNextLevelId(levelId);
 
   return (
     <View style={styles.overlay}>
@@ -30,13 +28,12 @@ export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victo
         </View>
 
         <View style={styles.actions}>
-          {hasNext ? (
+          {nextLevelId !== null ? (
             <Button
               label="Next Level"
               icon="next"
               fullWidth
-              // Phase 3 will refine stack management; replace is fine for now.
-              onPress={() => navigation.replace('Game', { levelId: levelId + 1 })}
+              onPress={() => navigation.replace('Game', { levelId: nextLevelId })}
             />
           ) : null}
           <Button
