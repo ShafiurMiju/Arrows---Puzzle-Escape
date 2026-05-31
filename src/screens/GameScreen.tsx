@@ -1,12 +1,21 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 
-import { AppText, Board, GameControls, Header, ScreenContainer } from '../components';
-import { spacing } from '../constants';
-import { simulateGrid } from '../game/engine';
+import {
+  AppText,
+  Board,
+  type BoardGeometry,
+  GameControls,
+  Header,
+  Icon,
+  ScreenContainer,
+} from '../components';
+import { palette, spacing } from '../constants';
+import { findStart, simulateGrid } from '../game/engine';
 import { getFirstLevelId, getLevel, getLevelOrThrow } from '../game/levels';
 import { computeScore, computeStars } from '../game/mechanics';
-import { useBoard } from '../hooks';
+import { useBoard, useSimulationPlayback } from '../hooks';
 import { useProgressStore } from '../store';
 import { SimulationStatus } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
@@ -18,32 +27,79 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     () => getLevel(levelId) ?? getLevelOrThrow(getFirstLevelId()),
     [levelId],
   );
+
   const { grid, moves, canUndo, rotateTile, undo, reset } = useBoard(level);
   const recordResult = useProgressStore((s) => s.recordResult);
+
+  const [geometry, setGeometry] = useState<BoardGeometry | null>(null);
+  const { status, animatedStyle, play, pause, resume, stop } = useSimulationPlayback(geometry);
   const startedAt = useRef(Date.now());
 
-  const handlePlay = useCallback(() => {
-    // Run the engine on the current (player-rotated) board. Animated step-by-step
-    // playback arrives in Phase 8; for now the outcome is instant.
-    const result = simulateGrid(grid);
-    const timeSec = Math.round((Date.now() - startedAt.current) / 1000);
-    const won = result.status === SimulationStatus.Won;
+  // Stop any running playback if we leave the screen.
+  useEffect(() => stop, [stop]);
 
-    if (won) {
-      const rating = { movesUsed: moves, timeSec, thresholds: level.stars };
-      const stars = computeStars(rating);
-      const score = computeScore(rating);
-      recordResult({ levelId, won: true, movesUsed: moves, timeSec, stars, score });
-      navigation.navigate('Victory', { levelId, stars, moves, timeSec, score });
-    } else {
-      navigation.navigate('Failure', { levelId, reason: result.failureReason });
+  const handlePlayPause = useCallback(() => {
+    if (status === 'playing') {
+      pause();
+      return;
     }
-  }, [grid, moves, level, levelId, navigation, recordResult]);
+    if (status === 'paused') {
+      resume();
+      return;
+    }
+
+    // Idle → run the engine and animate the result.
+    const start = findStart(grid);
+    if (!start) {
+      return;
+    }
+    const result = simulateGrid(grid);
+    const movesUsed = moves;
+    const playStartedAt = startedAt.current;
+
+    play(result, { position: start.position, direction: start.direction }, () => {
+      const timeSec = Math.round((Date.now() - playStartedAt) / 1000);
+      if (result.status === SimulationStatus.Won) {
+        const rating = { movesUsed, timeSec, thresholds: level.stars };
+        const stars = computeStars(rating);
+        const score = computeScore(rating);
+        recordResult({ levelId, won: true, movesUsed, timeSec, stars, score });
+        navigation.navigate('Victory', { levelId, stars, moves: movesUsed, timeSec, score });
+      } else {
+        navigation.navigate('Failure', { levelId, reason: result.failureReason });
+      }
+    });
+  }, [status, pause, resume, play, grid, moves, level, levelId, navigation, recordResult]);
 
   const handleRestart = useCallback(() => {
+    stop();
     reset();
     startedAt.current = Date.now();
-  }, [reset]);
+  }, [stop, reset]);
+
+  const traveler =
+    geometry !== null ? (
+      <Animated.View
+        style={[
+          styles.traveler,
+          { width: geometry.cellSize, height: geometry.cellSize },
+          animatedStyle,
+        ]}
+      >
+        <View
+          style={[
+            styles.travelerInner,
+            {
+              width: geometry.cellSize * 0.66,
+              height: geometry.cellSize * 0.66,
+              borderRadius: geometry.cellSize * 0.33,
+            },
+          ]}
+        >
+          <Icon name="arrow" size={Math.round(geometry.cellSize * 0.42)} color={palette.background} />
+        </View>
+      </Animated.View>
+    ) : null;
 
   return (
     <ScreenContainer>
@@ -57,7 +113,14 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
       </View>
 
       <View style={styles.boardArea}>
-        <Board grid={grid} interactive onRotateTile={rotateTile} maxWidth={460} />
+        <Board
+          grid={grid}
+          interactive={status === 'idle'}
+          onRotateTile={rotateTile}
+          maxWidth={460}
+          onGeometry={setGeometry}
+          overlay={traveler}
+        />
         <AppText variant="caption" color="textMuted" center style={styles.hint}>
           Tap arrow tiles to rotate them, then press Play.
         </AppText>
@@ -65,9 +128,9 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
 
       <View style={styles.controls}>
         <GameControls
-          isPlaying={false}
-          canUndo={canUndo}
-          onPlayPause={handlePlay}
+          isPlaying={status === 'playing'}
+          canUndo={canUndo && status === 'idle'}
+          onPlayPause={handlePlayPause}
           onUndo={undo}
           onRestart={handleRestart}
           onHint={() => undefined}
@@ -94,5 +157,22 @@ const styles = StyleSheet.create({
   },
   controls: {
     paddingVertical: spacing.xl,
+  },
+  traveler: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  travelerInner: {
+    backgroundColor: palette.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: palette.primary,
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
   },
 });

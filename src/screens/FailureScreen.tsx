@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 
 import { AppText, Button, Card, Icon } from '../components';
 import { palette, radius, spacing } from '../constants';
@@ -18,35 +19,37 @@ export function FailureScreen({ navigation, route }: RootStackScreenProps<'Failu
   const message = reason ? REASON_TEXT[reason] : 'The arrow did not reach the exit.';
 
   return (
-    <View style={styles.overlay}>
-      <Card elevated style={styles.card}>
-        <View style={styles.iconWrap}>
-          <Icon name="close" size={36} color={palette.danger} />
-        </View>
+    <Animated.View style={styles.overlay} entering={FadeIn.duration(180)}>
+      <Animated.View style={styles.cardWrap} entering={ZoomIn.duration(280)}>
+        <Card elevated style={styles.card}>
+          <View style={styles.iconWrap}>
+            <Icon name="close" size={36} color={palette.danger} />
+          </View>
 
-        <AppText variant="heading" center>
-          Try Again
-        </AppText>
-        <AppText variant="body" color="textSecondary" center>
-          {message}
-        </AppText>
+          <AppText variant="heading" center>
+            Try Again
+          </AppText>
+          <AppText variant="body" color="textSecondary" center>
+            {message}
+          </AppText>
 
-        <View style={styles.actions}>
-          <Button
-            label="Retry"
-            icon="restart"
-            fullWidth
-            onPress={() => navigation.replace('Game', { levelId })}
-          />
-          <Button
-            label="Level Select"
-            variant="secondary"
-            fullWidth
-            onPress={() => navigation.navigate('LevelSelect')}
-          />
-        </View>
-      </Card>
-    </View>
+          <View style={styles.actions}>
+            <Button
+              label="Retry"
+              icon="restart"
+              fullWidth
+              onPress={() => navigation.replace('Game', { levelId })}
+            />
+            <Button
+              label="Level Select"
+              variant="secondary"
+              fullWidth
+              onPress={() => navigation.navigate('LevelSelect')}
+            />
+          </View>
+        </Card>
+      </Animated.View>
+    </Animated.View>
   );
 }
 
@@ -58,9 +61,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     backgroundColor: palette.overlay,
   },
-  card: {
+  cardWrap: {
     width: '100%',
     maxWidth: 420,
+  },
+  card: {
+    width: '100%',
     alignItems: 'center',
     gap: spacing.md,
   },

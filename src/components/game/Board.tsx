@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
 import { spacing } from '../../constants';
@@ -7,6 +7,11 @@ import { TileView } from './TileView';
 
 const GAP = spacing.xs;
 
+export interface BoardGeometry {
+  cellSize: number;
+  gap: number;
+}
+
 export interface BoardProps {
   grid: Grid;
   /** Enables tap-to-rotate on rotatable arrow tiles. */
@@ -14,13 +19,24 @@ export interface BoardProps {
   onRotateTile?: (tileId: string) => void;
   /** Upper bound on board width (keeps it sensible on tablets). */
   maxWidth?: number;
+  /** Absolutely-positioned layer over the grid (e.g. the traveling arrow). */
+  overlay?: ReactNode;
+  /** Reports the resolved cell geometry so overlays can position to the grid. */
+  onGeometry?: (geometry: BoardGeometry) => void;
 }
 
 /**
  * Renders a {@link Grid} as a responsive square-celled board. Cell size is
  * derived from the measured container width so the board fits any screen.
  */
-export function Board({ grid, interactive = false, onRotateTile, maxWidth }: BoardProps) {
+export function Board({
+  grid,
+  interactive = false,
+  onRotateTile,
+  maxWidth,
+  overlay,
+  onGeometry,
+}: BoardProps) {
   const [containerWidth, setContainerWidth] = useState(0);
 
   const rows = grid.length;
@@ -36,6 +52,12 @@ export function Board({ grid, interactive = false, onRotateTile, maxWidth }: Boa
   const available = maxWidth ? Math.min(containerWidth, maxWidth) : containerWidth;
   const cellSize = cols > 0 && available > 0 ? Math.floor((available - GAP * (cols - 1)) / cols) : 0;
   const boardWidth = cellSize > 0 ? cellSize * cols + GAP * (cols - 1) : 0;
+
+  useEffect(() => {
+    if (cellSize > 0) {
+      onGeometry?.({ cellSize, gap: GAP });
+    }
+  }, [cellSize, onGeometry]);
 
   return (
     <View style={styles.outer} onLayout={onLayout}>
@@ -57,6 +79,11 @@ export function Board({ grid, interactive = false, onRotateTile, maxWidth }: Boa
               })}
             </View>
           ))}
+          {overlay ? (
+            <View style={StyleSheet.absoluteFill} pointerEvents="none">
+              {overlay}
+            </View>
+          ) : null}
         </View>
       ) : null}
     </View>

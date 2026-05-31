@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 
 import { AppText, Button, Card, StarRow } from '../components';
 import { palette, spacing } from '../constants';
@@ -11,40 +12,42 @@ export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victo
   const nextLevelId = getNextLevelId(levelId);
 
   return (
-    <View style={styles.overlay}>
-      <Card elevated style={styles.card}>
-        <AppText variant="heading" center>
-          Level Complete!
-        </AppText>
+    <Animated.View style={styles.overlay} entering={FadeIn.duration(180)}>
+      <Animated.View style={styles.cardWrap} entering={ZoomIn.duration(280)}>
+        <Card elevated style={styles.card}>
+          <AppText variant="heading" center>
+            Level Complete!
+          </AppText>
 
-        <View style={styles.stars}>
-          <StarRow count={stars} size={40} gap={10} />
-        </View>
+          <View style={styles.stars}>
+            <StarRow count={stars} size={40} gap={10} />
+          </View>
 
-        <View style={styles.stats}>
-          <Stat label="Moves" value={String(moves)} />
-          <Stat label="Time" value={formatTime(timeSec)} />
-          <Stat label="Score" value={String(score)} />
-        </View>
+          <View style={styles.stats}>
+            <Stat label="Moves" value={String(moves)} />
+            <Stat label="Time" value={formatTime(timeSec)} />
+            <Stat label="Score" value={String(score)} />
+          </View>
 
-        <View style={styles.actions}>
-          {nextLevelId !== null ? (
+          <View style={styles.actions}>
+            {nextLevelId !== null ? (
+              <Button
+                label="Next Level"
+                icon="next"
+                fullWidth
+                onPress={() => navigation.replace('Game', { levelId: nextLevelId })}
+              />
+            ) : null}
             <Button
-              label="Next Level"
-              icon="next"
+              label="Level Select"
+              variant="secondary"
               fullWidth
-              onPress={() => navigation.replace('Game', { levelId: nextLevelId })}
+              onPress={() => navigation.navigate('LevelSelect')}
             />
-          ) : null}
-          <Button
-            label="Level Select"
-            variant="secondary"
-            fullWidth
-            onPress={() => navigation.navigate('LevelSelect')}
-          />
-        </View>
-      </Card>
-    </View>
+          </View>
+        </Card>
+      </Animated.View>
+    </Animated.View>
   );
 }
 
@@ -69,9 +72,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     backgroundColor: palette.overlay,
   },
-  card: {
+  cardWrap: {
     width: '100%',
     maxWidth: 420,
+  },
+  card: {
+    width: '100%',
     alignItems: 'center',
     gap: spacing.lg,
   },
