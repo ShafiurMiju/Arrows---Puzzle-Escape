@@ -1,4 +1,11 @@
-import { Difficulty, Direction, LevelDefinition, Tile, TileType } from '../../../types';
+import {
+  Difficulty,
+  Direction,
+  LevelDefinition,
+  RotateEffect,
+  Tile,
+  TileType,
+} from '../../../types';
 
 let counter = 0;
 const nextId = (prefix: string): string => {
@@ -42,6 +49,60 @@ export const ice = (row: number, col: number): Tile => ({
   type: TileType.Ice,
   id: nextId('ice'),
   position: { row, col },
+});
+
+export const teleporter = (row: number, col: number, channel: number): Tile => ({
+  type: TileType.Teleporter,
+  id: nextId('tp'),
+  position: { row, col },
+  channel,
+});
+
+export const speed = (row: number, col: number, multiplier = 2): Tile => ({
+  type: TileType.Speed,
+  id: nextId('speed'),
+  position: { row, col },
+  multiplier,
+});
+
+export const rotateTile = (row: number, col: number, effect: RotateEffect): Tile => ({
+  type: TileType.Rotate,
+  id: nextId('rotate'),
+  position: { row, col },
+  effect,
+});
+
+export const oneWay = (row: number, col: number, allowedEntry: Direction[]): Tile => ({
+  type: TileType.OneWay,
+  id: nextId('oneway'),
+  position: { row, col },
+  allowedEntry,
+});
+
+export const breakable = (row: number, col: number): Tile => ({
+  type: TileType.Breakable,
+  id: nextId('breakable'),
+  position: { row, col },
+});
+
+export const switchTile = (
+  row: number,
+  col: number,
+  switchGroup: string,
+  initiallyActive = true,
+): Tile => ({
+  type: TileType.Switch,
+  id: nextId('switch'),
+  position: { row, col },
+  switchGroup,
+  initiallyActive,
+});
+
+export const switchWall = (row: number, col: number, switchGroup: string): Tile => ({
+  type: TileType.Wall,
+  id: nextId('wall'),
+  position: { row, col },
+  switchGroup,
 });
 
 export const makeLevel = (rows: number, cols: number, tiles: Tile[]): LevelDefinition => ({

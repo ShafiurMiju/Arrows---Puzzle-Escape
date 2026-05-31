@@ -72,3 +72,11 @@ test('special tiles are inert pass-through in Phase 3 (engine still resolves)', 
   const result = simulateLevel(level);
   assert.equal(result.status, SimulationStatus.Won);
 });
+
+test('a long non-looping corridor (>1000 cells) is solved, not mislabeled as a loop', () => {
+  // The step backstop is derived from the finite state space, so a valid path
+  // longer than the old fixed 1000-step cap still wins.
+  const cols = 1100;
+  const level = makeLevel(1, cols, [start(0, 0, Direction.Right), exit(0, cols - 1)]);
+  assert.equal(simulateLevel(level).status, SimulationStatus.Won);
+});

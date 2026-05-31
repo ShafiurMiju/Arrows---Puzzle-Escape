@@ -155,11 +155,3 @@ export type Grid = ReadonlyArray<ReadonlyArray<Tile>>;
  * never by mutating tile fields. This keeps the engine deterministic.
  */
 export type WritableGrid = Tile[][];
-
-/** Narrow a {@link Tile} to a specific variant (type-safe runtime guard). */
-export function isTileType<T extends TileType>(
-  tile: Tile,
-  type: T,
-): tile is Extract<Tile, { type: T }> {
-  return tile.type === type;
-}

@@ -8,9 +8,10 @@ export const gameConfig = {
   /** Cells advanced per tick on a Speed tile when not otherwise specified. */
   defaultSpeedMultiplier: 2,
   /**
-   * Safety bound for the simulation: if the arrow exceeds this many steps
-   * without reaching the exit, the run is declared an INFINITE_LOOP. Sized far
-   * above the longest possible non-repeating path on our largest boards.
+   * Floor for the simulation's step backstop. The engine derives the actual cap
+   * from the level's finite settled-state space (so it never pre-empts a valid
+   * path) but never goes below this. Loop detection — not this cap — is what
+   * actually proves an INFINITE_LOOP; this is only a defensive ceiling.
    */
   maxSimulationSteps: 1000,
   /** Stars achievable per level. */
