@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 
 import { palette, radius } from '../../constants';
+import { audio } from '../../services/audio';
+import { haptics } from '../../services/haptics';
 import { Icon, IconName } from './Icon';
 
 export type IconButtonVariant = 'surface' | 'primary' | 'ghost';
@@ -13,6 +15,8 @@ export interface IconButtonProps {
   size?: number;
   disabled?: boolean;
   active?: boolean;
+  /** Play the button click + light haptic on press (default true). */
+  feedback?: boolean;
   style?: ViewStyle;
 }
 
@@ -30,9 +34,18 @@ export function IconButton({
   size = 52,
   disabled = false,
   active = false,
+  feedback = true,
   style,
 }: IconButtonProps) {
   const iconColor = variant === 'primary' ? palette.textPrimary : palette.textSecondary;
+
+  const handlePress = () => {
+    if (feedback) {
+      audio.playEffect('button');
+      haptics.trigger('light');
+    }
+    onPress?.();
+  };
 
   return (
     <Pressable
@@ -40,7 +53,7 @@ export function IconButton({
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled, selected: active }}
       disabled={disabled}
-      onPress={onPress}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.base,
         { width: size, height: size, borderRadius: radius.md, backgroundColor: BACKGROUND[variant] },

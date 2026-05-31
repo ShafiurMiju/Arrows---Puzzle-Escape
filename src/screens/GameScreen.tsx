@@ -16,6 +16,8 @@ import { findStart, simulateGrid } from '../game/engine';
 import { getFirstLevelId, getLevel, getLevelOrThrow } from '../game/levels';
 import { computeScore, computeStars } from '../game/mechanics';
 import { useBoard, useSimulationPlayback } from '../hooks';
+import { audio } from '../services/audio';
+import { haptics } from '../services/haptics';
 import { useProgressStore } from '../store';
 import { SimulationStatus } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
@@ -71,6 +73,15 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     });
   }, [status, pause, resume, play, grid, moves, level, levelId, navigation, recordResult]);
 
+  const handleRotate = useCallback(
+    (tileId: string) => {
+      rotateTile(tileId);
+      audio.playEffect('rotate');
+      haptics.trigger('selection');
+    },
+    [rotateTile],
+  );
+
   const handleRestart = useCallback(() => {
     stop();
     reset();
@@ -116,7 +127,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
         <Board
           grid={grid}
           interactive={status === 'idle'}
-          onRotateTile={rotateTile}
+          onRotateTile={handleRotate}
           maxWidth={460}
           onGeometry={setGeometry}
           overlay={traveler}

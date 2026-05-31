@@ -1,15 +1,23 @@
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 
 import { AppText, Button, Card, StarRow } from '../components';
 import { palette, spacing } from '../constants';
 import { getNextLevelId } from '../game/levels';
+import { audio } from '../services/audio';
+import { haptics } from '../services/haptics';
 import type { RootStackScreenProps } from '../navigation/types';
 import { formatTime } from '../utils';
 
 export function VictoryScreen({ navigation, route }: RootStackScreenProps<'Victory'>) {
   const { levelId, stars, moves, timeSec, score } = route.params;
   const nextLevelId = getNextLevelId(levelId);
+
+  useEffect(() => {
+    audio.playEffect('victory');
+    haptics.trigger('success');
+  }, []);
 
   return (
     <Animated.View style={styles.overlay} entering={FadeIn.duration(180)}>

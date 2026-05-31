@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 
 import { AppText, Button, Card, Icon } from '../components';
 import { palette, radius, spacing } from '../constants';
+import { audio } from '../services/audio';
+import { haptics } from '../services/haptics';
 import { FailureReason } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
 
@@ -17,6 +20,11 @@ const REASON_TEXT: Record<FailureReason, string> = {
 export function FailureScreen({ navigation, route }: RootStackScreenProps<'Failure'>) {
   const { levelId, reason } = route.params;
   const message = reason ? REASON_TEXT[reason] : 'The arrow did not reach the exit.';
+
+  useEffect(() => {
+    audio.playEffect('failure');
+    haptics.trigger('error');
+  }, []);
 
   return (
     <Animated.View style={styles.overlay} entering={FadeIn.duration(180)}>

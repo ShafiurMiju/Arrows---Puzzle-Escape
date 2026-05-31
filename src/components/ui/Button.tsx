@@ -1,6 +1,8 @@
 import { ActivityIndicator, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { palette, radius, spacing } from '../../constants';
+import { audio } from '../../services/audio';
+import { haptics } from '../../services/haptics';
 import { AppText } from './AppText';
 import { Icon, IconName } from './Icon';
 
@@ -14,6 +16,8 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
+  /** Play the button click + light haptic on press (default true). */
+  feedback?: boolean;
   style?: ViewStyle;
 }
 
@@ -39,17 +43,26 @@ export function Button({
   disabled = false,
   loading = false,
   fullWidth = false,
+  feedback = true,
   style,
 }: ButtonProps) {
   const isDisabled = disabled || loading;
   const textColor = TEXT_COLOR[variant];
+
+  const handlePress = () => {
+    if (feedback) {
+      audio.playEffect('button');
+      haptics.trigger('light');
+    }
+    onPress?.();
+  };
 
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityState={{ disabled: isDisabled }}
       disabled={isDisabled}
-      onPress={onPress}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.base,
         { backgroundColor: BACKGROUND[variant] },
