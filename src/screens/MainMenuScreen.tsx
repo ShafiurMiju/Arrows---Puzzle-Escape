@@ -2,12 +2,12 @@ import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Icon, ScreenContainer } from '../components';
 import { brandBadge, palette, radius, spacing } from '../constants';
+import { useProgressStore } from '../store';
 import type { RootStackScreenProps } from '../navigation/types';
 
-// Placeholder for "continue where you left off" until the progress store (Phase 7).
-const CURRENT_LEVEL_ID = 1;
-
 export function MainMenuScreen({ navigation }: RootStackScreenProps<'MainMenu'>) {
+  const currentLevelId = useProgressStore((s) => s.progress.currentLevelId);
+
   return (
     <ScreenContainer>
       <View style={styles.brand}>
@@ -27,7 +27,7 @@ export function MainMenuScreen({ navigation }: RootStackScreenProps<'MainMenu'>)
           label="Play"
           icon="play"
           fullWidth
-          onPress={() => navigation.navigate('Game', { levelId: CURRENT_LEVEL_ID })}
+          onPress={() => navigation.navigate('Game', { levelId: currentLevelId })}
         />
         <Button
           label="Levels"

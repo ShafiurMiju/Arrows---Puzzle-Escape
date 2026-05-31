@@ -1,15 +1,14 @@
+import { useMemo } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Header, Icon, ScreenContainer, StarRow } from '../components';
 import { palette, radius, spacing } from '../constants';
 import { isLevelUnlocked, LEVEL_COUNT } from '../game/levels';
+import { completedLevelIds } from '../game/mechanics';
+import { useProgressStore } from '../store';
 import type { RootStackScreenProps } from '../navigation/types';
 
 const COLUMNS = 4;
-
-// TEMP placeholder progress until the Phase 7 progress store: a few levels open,
-// no stars earned yet. The level list itself is now the real catalog.
-const PLACEHOLDER_COMPLETED = new Set<number>([1, 2, 3, 4, 5, 6, 7]);
 
 interface LevelItem {
   id: number;
@@ -17,12 +16,20 @@ interface LevelItem {
   stars: number;
 }
 
-const LEVELS: LevelItem[] = Array.from({ length: LEVEL_COUNT }, (_, i) => {
-  const id = i + 1;
-  return { id, unlocked: isLevelUnlocked(id, PLACEHOLDER_COMPLETED), stars: 0 };
-});
-
 export function LevelSelectScreen({ navigation }: RootStackScreenProps<'LevelSelect'>) {
+  const progress = useProgressStore((s) => s.progress);
+  const levels = useMemo<LevelItem[]>(() => {
+    const completed = completedLevelIds(progress);
+    return Array.from({ length: LEVEL_COUNT }, (_, i) => {
+      const id = i + 1;
+      return {
+        id,
+        unlocked: isLevelUnlocked(id, completed),
+        stars: progress.levels[id]?.bestStars ?? 0,
+      };
+    });
+  }, [progress]);
+
   return (
     <ScreenContainer padded={false}>
       <View style={styles.headerWrap}>
@@ -30,7 +37,7 @@ export function LevelSelectScreen({ navigation }: RootStackScreenProps<'LevelSel
       </View>
 
       <FlatList
-        data={LEVELS}
+        data={levels}
         keyExtractor={(item) => String(item.id)}
         numColumns={COLUMNS}
         style={styles.grow}

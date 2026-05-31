@@ -5,8 +5,10 @@ import { AppText, Board, GameControls, Header, ScreenContainer } from '../compon
 import { spacing } from '../constants';
 import { simulateGrid } from '../game/engine';
 import { getFirstLevelId, getLevel, getLevelOrThrow } from '../game/levels';
+import { computeScore, computeStars } from '../game/mechanics';
 import { useBoard } from '../hooks';
-import { LevelDefinition, SimulationStatus } from '../types';
+import { useProgressStore } from '../store';
+import { SimulationStatus } from '../types';
 import type { RootStackScreenProps } from '../navigation/types';
 
 export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) {
@@ -16,27 +18,27 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
     () => getLevel(levelId) ?? getLevelOrThrow(getFirstLevelId()),
     [levelId],
   );
-  const { grid, moves, rotateTile, reset } = useBoard(level);
+  const { grid, moves, canUndo, rotateTile, undo, reset } = useBoard(level);
+  const recordResult = useProgressStore((s) => s.recordResult);
   const startedAt = useRef(Date.now());
 
   const handlePlay = useCallback(() => {
-    // Run the Phase 3 engine on the current (player-rotated) board. Animated
-    // step-by-step playback arrives in Phase 8; for now the outcome is instant.
+    // Run the engine on the current (player-rotated) board. Animated step-by-step
+    // playback arrives in Phase 8; for now the outcome is instant.
     const result = simulateGrid(grid);
     const timeSec = Math.round((Date.now() - startedAt.current) / 1000);
+    const won = result.status === SimulationStatus.Won;
 
-    if (result.status === SimulationStatus.Won) {
-      navigation.navigate('Victory', {
-        levelId,
-        stars: rateStars(moves, level),
-        moves,
-        timeSec,
-        score: scoreFor(moves, timeSec),
-      });
+    if (won) {
+      const rating = { movesUsed: moves, timeSec, thresholds: level.stars };
+      const stars = computeStars(rating);
+      const score = computeScore(rating);
+      recordResult({ levelId, won: true, movesUsed: moves, timeSec, stars, score });
+      navigation.navigate('Victory', { levelId, stars, moves, timeSec, score });
     } else {
       navigation.navigate('Failure', { levelId, reason: result.failureReason });
     }
-  }, [grid, moves, level, levelId, navigation]);
+  }, [grid, moves, level, levelId, navigation, recordResult]);
 
   const handleRestart = useCallback(() => {
     reset();
@@ -64,26 +66,15 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
       <View style={styles.controls}>
         <GameControls
           isPlaying={false}
-          canUndo={false}
+          canUndo={canUndo}
           onPlayPause={handlePlay}
-          onUndo={() => undefined}
+          onUndo={undo}
           onRestart={handleRestart}
           onHint={() => undefined}
         />
       </View>
     </ScreenContainer>
   );
-}
-
-// Placeholder scoring. The formal rating + scoring system lands in Phase 7.
-function rateStars(moves: number, level: LevelDefinition): number {
-  if (moves <= level.stars.threeStarMoves) return 3;
-  if (moves <= level.stars.twoStarMoves) return 2;
-  return 1;
-}
-
-function scoreFor(moves: number, timeSec: number): number {
-  return Math.max(100, 1000 - moves * 50 - timeSec * 5);
 }
 
 const styles = StyleSheet.create({
