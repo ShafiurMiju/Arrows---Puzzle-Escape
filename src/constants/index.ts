@@ -4,3 +4,4 @@ export * from './layout';
 export * from './gameConfig';
 export * from './storageKeys';
 export * from './ads';
+export * from './achievements';

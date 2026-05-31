@@ -45,3 +45,19 @@ export const durations = {
 } as const;
 
 export const hitSlop = { top: 8, bottom: 8, left: 8, right: 8 } as const;
+
+/** Brand-logo badge sizes (Splash uses the larger entrance size). */
+export const brandBadge = {
+  md: 88,
+  lg: 104,
+} as const;
+
+/** Reusable raised-surface shadow/elevation values (shadowColor stays per-surface). */
+export const elevation = {
+  raised: {
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
+  },
+} as const;
