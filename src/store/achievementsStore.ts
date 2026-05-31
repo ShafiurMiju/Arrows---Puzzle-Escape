@@ -15,6 +15,8 @@ interface AchievementsStore {
    * Idempotent; returns the ids unlocked by THIS call (for a future toast).
    */
   sync: (progress: ProgressState, now: number) => string[];
+  /** Clear all unlock timestamps (paired with a progress reset). */
+  reset: () => void;
 }
 
 export const useAchievementsStore = create<AchievementsStore>()(
@@ -35,6 +37,7 @@ export const useAchievementsStore = create<AchievementsStore>()(
         }
         return newly;
       },
+      reset: () => set({ unlockedAt: {} }),
     }),
     {
       name: StorageKeys.achievements,

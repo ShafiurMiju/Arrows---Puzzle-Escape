@@ -123,17 +123,49 @@ See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for the full layering explanation.
         └── mechanics/    # scoring, hints, undo                    (Phase 5-7)
 ```
 
-## Roadmap (phased delivery)
+## Roadmap (phased delivery) — ✅ all phases complete
 
-1. **Project setup & architecture** ← _you are here_
-2. Navigation & screens
-3. Puzzle engine
-4. Grid rendering
-5. Tile mechanics
-6. Level system (100+ levels)
-7. Save & progress system
-8. Animations
-9. Audio
-10. Ads (AdMob)
-11. Achievements
-12. Optimization & release prep
+1. ✅ Project setup & architecture
+2. ✅ Navigation & screens
+3. ✅ Puzzle engine
+4. ✅ Grid rendering
+5. ✅ Tile mechanics
+6. ✅ Level system (100+ levels)
+7. ✅ Save & progress system
+8. ✅ Animations
+9. ✅ Audio
+10. ✅ Ads (AdMob)
+11. ✅ Achievements
+12. ✅ Optimization & release prep
+
+## Quality gates
+
+```bash
+npm run typecheck     # tsc --noEmit (strict) — clean
+npm run test:engine   # 53 pure-logic unit tests (engine, mechanics, levels, achievements)
+```
+
+The pure core (engine, tile mechanics, level solver, rating/progress/achievements,
+hints) is unit-tested in plain Node. RN-coupled layers (stores, services, screens,
+animations) are verified by `tsc` and on-device runs.
+
+## Releasing to Google Play
+
+This project has been built and verified via `tsc` + unit tests, but **not yet run
+on a device**. Before publishing:
+
+1. **Run it on Android** (custom dev client — AdMob + Reanimated need native code):
+   `npx expo run:android`, or `eas build --profile development`.
+2. **Link EAS**: `eas init` (populates `extra.eas.projectId`), then
+   `eas build --profile production --platform android` for an `.aab`.
+3. **Real assets**: replace the placeholder icons (`npm run assets:icons`) and
+   synthesized sounds (`npm run assets:sounds`) under `src/assets/` with final art/audio.
+4. **Real AdMob**: set the production App ID in `app.json` and the real ad-unit ids
+   in `src/constants/ads.ts` (`ProdAdUnitIds`). Keep test ids in dev — never click
+   live ads on your own account.
+5. **Analytics (optional)**: drop a Firebase Analytics + Crashlytics adapter behind
+   the existing `AnalyticsService` port (`src/services/analytics`) — no call sites change.
+6. **In-app purchase (optional)**: implement the reserved `PurchaseService` port to
+   make "Remove Ads" a real purchase (it's a placeholder flag today).
+7. **Lint**: `npx expo lint` (scaffolds ESLint on first run).
+8. **Bump** `version` + `android.versionCode` in `app.json` per release.

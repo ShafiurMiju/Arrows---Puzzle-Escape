@@ -1,8 +1,8 @@
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, Header, ScreenContainer, SettingRow } from '../components';
 import { palette, spacing } from '../constants';
-import { useSettingsStore } from '../store';
+import { useAchievementsStore, useProgressStore, useSettingsStore } from '../store';
 import type { RootStackScreenProps } from '../navigation/types';
 
 export function SettingsScreen({ navigation }: RootStackScreenProps<'Settings'>) {
@@ -13,6 +13,26 @@ export function SettingsScreen({ navigation }: RootStackScreenProps<'Settings'>)
   const setSoundEnabled = useSettingsStore((s) => s.setSoundEnabled);
   const setVibrationEnabled = useSettingsStore((s) => s.setVibrationEnabled);
   const setRemoveAds = useSettingsStore((s) => s.setRemoveAds);
+  const resetProgress = useProgressStore((s) => s.reset);
+  const resetAchievements = useAchievementsStore((s) => s.reset);
+
+  const handleResetProgress = () => {
+    Alert.alert(
+      'Reset progress?',
+      'This erases all level progress, stars, and achievements. This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Reset',
+          style: 'destructive',
+          onPress: () => {
+            resetProgress();
+            resetAchievements();
+          },
+        },
+      ],
+    );
+  };
 
   return (
     <ScreenContainer>
@@ -56,6 +76,10 @@ export function SettingsScreen({ navigation }: RootStackScreenProps<'Settings'>)
         </AppText>
       </View>
 
+      <View style={styles.danger}>
+        <Button label="Reset Progress" variant="danger" onPress={handleResetProgress} />
+      </View>
+
       <AppText variant="caption" color="textMuted" center style={styles.version}>
         Arrows – Puzzle Escape · v1.0.0
       </AppText>
@@ -78,6 +102,9 @@ const styles = StyleSheet.create({
   },
   removeAdsNote: {
     paddingHorizontal: spacing.md,
+  },
+  danger: {
+    marginTop: spacing.lg,
   },
   version: {
     marginTop: 'auto',

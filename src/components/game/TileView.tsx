@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { palette, tileColors } from '../../constants';
@@ -7,8 +8,11 @@ import { Icon } from '../ui/Icon';
 export interface TileViewProps {
   tile: Tile;
   size: number;
-  /** Provided only for rotatable arrow tiles — makes the tile tappable. */
-  onPress?: () => void;
+  /**
+   * Provided only for rotatable arrow tiles — receives the tile id on press.
+   * Passing a STABLE callback lets React.memo skip the (unchanged) cells.
+   */
+  onPress?: (tileId: string) => void;
 }
 
 /** Clockwise rotation applied to the (right-pointing) arrow glyph per heading. */
@@ -27,8 +31,11 @@ const LIGHT_FILL = new Set<TileType>([
   TileType.Ice,
 ]);
 
-/** Renders a single board cell: themed fill + a per-type glyph. */
-export function TileView({ tile, size, onPress }: TileViewProps) {
+/**
+ * Renders a single board cell: themed fill + a per-type glyph. Memoized so a
+ * tap re-renders only the rotated tile (others keep their object reference).
+ */
+export const TileView = memo(function TileView({ tile, size, onPress }: TileViewProps) {
   const cell = (
     <View
       style={[
@@ -51,7 +58,7 @@ export function TileView({ tile, size, onPress }: TileViewProps) {
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={() => onPress(tile.id)}
       accessibilityRole="button"
       accessibilityLabel="Rotate arrow tile"
       style={({ pressed }) => (pressed ? styles.pressed : undefined)}
@@ -59,7 +66,7 @@ export function TileView({ tile, size, onPress }: TileViewProps) {
       {cell}
     </Pressable>
   );
-}
+});
 
 function TileGlyph({ tile, size }: { tile: Tile; size: number }) {
   const glyphSize = Math.round(size * 0.52);

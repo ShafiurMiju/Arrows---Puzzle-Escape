@@ -5,8 +5,10 @@ import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { RootNavigator } from './navigation/RootNavigator';
 import { ads } from './services/ads';
+import { analytics } from './services/analytics';
 import { audio } from './services/audio';
 import { haptics } from './services/haptics';
 import { useProgressStore, useSettingsStore } from './store';
@@ -38,7 +40,7 @@ export default function App() {
       return undefined;
     }
     let active = true;
-    Promise.all([audio.init(), ads.init()]).then(() => {
+    Promise.all([audio.init(), ads.init(), analytics.init()]).then(() => {
       if (!active) {
         return;
       }
@@ -81,7 +83,9 @@ export default function App() {
     <GestureHandlerRootView style={styles.flex}>
       <SafeAreaProvider>
         <StatusBar style="light" />
-        <RootNavigator onReady={onNavigationReady} />
+        <ErrorBoundary>
+          <RootNavigator onReady={onNavigationReady} />
+        </ErrorBoundary>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -1,7 +1,14 @@
-import { DarkTheme, NavigationContainer, type Theme } from '@react-navigation/native';
+import {
+  DarkTheme,
+  NavigationContainer,
+  type Theme,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useCallback } from 'react';
 
 import { palette } from '../constants';
+import { analytics } from '../services/analytics';
 import {
   AchievementsScreen,
   FailureScreen,
@@ -36,8 +43,24 @@ export interface RootNavigatorProps {
 }
 
 export function RootNavigator({ onReady }: RootNavigatorProps) {
+  const navigationRef = useNavigationContainerRef<RootStackParamList>();
+  const logScreenView = useCallback(() => {
+    const route = navigationRef.getCurrentRoute();
+    if (route) {
+      analytics.logScreenView(route.name);
+    }
+  }, [navigationRef]);
+
   return (
-    <NavigationContainer theme={navigationTheme} onReady={onReady}>
+    <NavigationContainer
+      ref={navigationRef}
+      theme={navigationTheme}
+      onReady={() => {
+        onReady?.();
+        logScreenView();
+      }}
+      onStateChange={logScreenView}
+    >
       <Stack.Navigator
         initialRouteName="Splash"
         screenOptions={{

@@ -73,7 +73,9 @@ export function Board({
                     key={tile.id}
                     tile={tile}
                     size={cellSize}
-                    onPress={canRotate ? () => onRotateTile?.(tile.id) : undefined}
+                    // Stable callback (not a per-tile closure) so memoized
+                    // TileViews skip re-rendering on an unrelated tap.
+                    onPress={canRotate ? onRotateTile : undefined}
                   />
                 );
               })}

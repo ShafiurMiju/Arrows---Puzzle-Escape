@@ -17,6 +17,7 @@ import { getFirstLevelId, getLevel, getLevelOrThrow, solveLevel } from '../game/
 import { computeScore, computeStars, findHint } from '../game/mechanics';
 import { useBoard, useSimulationPlayback } from '../hooks';
 import { ads } from '../services/ads';
+import { analytics } from '../services/analytics';
 import { audio } from '../services/audio';
 import { haptics } from '../services/haptics';
 import { useAchievementsStore, useProgressStore } from '../store';
@@ -68,7 +69,7 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
         const rating = { movesUsed, timeSec, thresholds: level.stars };
         const stars = computeStars(rating);
         const score = computeScore(rating);
-        recordResult({
+        const levelResult = {
           levelId,
           won: true,
           movesUsed,
@@ -76,8 +77,10 @@ export function GameScreen({ navigation, route }: RootStackScreenProps<'Game'>) 
           stars,
           score,
           usedHint: hintUsedRef.current,
-        });
+        };
+        recordResult(levelResult);
         syncAchievements(useProgressStore.getState().progress, Date.now());
+        analytics.logLevelComplete(levelResult);
         navigation.navigate('Victory', { levelId, stars, moves: movesUsed, timeSec, score });
       } else {
         navigation.navigate('Failure', { levelId, reason: result.failureReason });
