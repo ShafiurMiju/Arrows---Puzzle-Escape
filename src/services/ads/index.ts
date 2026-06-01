@@ -11,7 +11,7 @@ import { AdsService, RewardKind, RewardOutcome } from '../../types';
 /**
  * AdMob adapter implementing the {@link AdsService} port via
  * react-native-google-mobile-ads. Uses Google's test ad unit ids in dev (see
- * `constants/ads`). Requires a custom dev build — it cannot run in Expo Go.
+ * `constants/ads`). Requires a native build — it cannot run in a JS-only preview.
  *
  * Gating: interstitials are shown after every Nth completed level and suppressed
  * when ads are removed. Rewarded ads are user-initiated (hints); when ads are

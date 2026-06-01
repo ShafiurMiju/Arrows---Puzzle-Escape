@@ -1,13 +1,13 @@
-import { type AudioPlayer, createAudioPlayer } from 'expo-audio';
+import Sound from 'react-native-sound';
 
 import { AudioService, SoundEffectName } from '../../types';
 
 /**
- * `expo-audio` adapter implementing the {@link AudioService} port. Owns one
- * looping music player and one player per sound effect, created lazily in
- * `init()`. All playback is best-effort (wrapped in try/catch) and gated by the
- * enabled flags, which the settings store drives. This is the only module that
- * imports the audio SDK.
+ * `react-native-sound` adapter implementing the {@link AudioService} port.
+ * Owns one looping music player and one player per sound effect, created lazily
+ * in `init()`. All playback is best-effort (wrapped in try/catch) and gated by
+ * the enabled flags, which the settings store drives. This is the only module
+ * that imports the audio SDK.
  */
 const EFFECT_SOURCES: Record<SoundEffectName, number> = {
   button: require('../../assets/sounds/button.wav'),
@@ -20,9 +20,20 @@ const EFFECT_SOURCES: Record<SoundEffectName, number> = {
 
 const MUSIC_SOURCE: number = require('../../assets/sounds/music.wav');
 
-class ExpoAudioService implements AudioService {
-  private musicPlayer: AudioPlayer | null = null;
-  private effectPlayers: Partial<Record<SoundEffectName, AudioPlayer>> = {};
+const loadSound = (source: number): Promise<Sound> =>
+  new Promise((resolve, reject) => {
+    const sound = new Sound(source, (error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(sound);
+    });
+  });
+
+class RNSoundAudioService implements AudioService {
+  private musicPlayer: Sound | null = null;
+  private effectPlayers: Partial<Record<SoundEffectName, Sound>> = {};
   private musicEnabled = true;
   private soundEnabled = true;
   private initialized = false;
@@ -33,11 +44,17 @@ class ExpoAudioService implements AudioService {
     }
     this.initialized = true;
     try {
-      this.musicPlayer = createAudioPlayer(MUSIC_SOURCE);
-      this.musicPlayer.loop = true;
-      this.musicPlayer.volume = 0.4;
-      (Object.keys(EFFECT_SOURCES) as SoundEffectName[]).forEach((name) => {
-        this.effectPlayers[name] = createAudioPlayer(EFFECT_SOURCES[name]);
+      Sound.setCategory('Playback', true);
+      const effectNames = Object.keys(EFFECT_SOURCES) as SoundEffectName[];
+      const [music, ...effects] = await Promise.all([
+        loadSound(MUSIC_SOURCE),
+        ...effectNames.map((name) => loadSound(EFFECT_SOURCES[name])),
+      ]);
+      this.musicPlayer = music;
+      this.musicPlayer.setNumberOfLoops(-1);
+      this.musicPlayer.setVolume(0.4);
+      effectNames.forEach((name, index) => {
+        this.effectPlayers[name] = effects[index];
       });
     } catch {
       // Audio is non-essential; never let it crash the app.
@@ -49,7 +66,7 @@ class ExpoAudioService implements AudioService {
       return;
     }
     try {
-      await this.musicPlayer.seekTo(0);
+      this.musicPlayer.setCurrentTime(0);
       this.musicPlayer.play();
     } catch {
       /* best-effort */
@@ -82,8 +99,9 @@ class ExpoAudioService implements AudioService {
       return;
     }
     try {
-      await player.seekTo(0);
-      player.play();
+      player.stop(() => {
+        player.play();
+      });
     } catch {
       /* best-effort */
     }
@@ -95,8 +113,8 @@ class ExpoAudioService implements AudioService {
 
   async dispose(): Promise<void> {
     try {
-      this.musicPlayer?.remove();
-      Object.values(this.effectPlayers).forEach((player) => player?.remove());
+      this.musicPlayer?.release();
+      Object.values(this.effectPlayers).forEach((player) => player?.release());
     } catch {
       /* best-effort */
     }
@@ -106,4 +124,4 @@ class ExpoAudioService implements AudioService {
   }
 }
 
-export const audio: AudioService = new ExpoAudioService();
+export const audio: AudioService = new RNSoundAudioService();

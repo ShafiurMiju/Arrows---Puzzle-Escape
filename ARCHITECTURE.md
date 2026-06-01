@@ -24,16 +24,17 @@ an interface ("port") that the rest of the app depends on instead of the SDK.
             │  services/ impls  │      │  game/engine · game/tiles  │
             │  behind types/    │      │  game/mechanics · types/   │
             │  AsyncStorage,    │      │  utils/                    │
-            │  expo-audio,      │      │  PURE, deterministic, no   │
-            │  AdMob, Firebase  │      │  React / Expo imports      │
+            │  react-native-    │      │  PURE, deterministic, no   │
+            │  sound, AdMob,    │      │  React / RN imports        │
+            │  Firebase         │      │                            │
             └───────────────────┘      └────────────────────────────┘
 ```
 
 ### Dependency rule
 
 - `types/`, `utils/`, and `game/` are the **core**. They import nothing from
-  React, Expo, or any device SDK, which makes the puzzle engine unit-testable in
-  plain Node and reusable across white-labeled deployments.
+  React, React Native, or any device SDK, which makes the puzzle engine
+  unit-testable in plain Node and reusable across white-labeled deployments.
 - `services/` contains **adapters** that implement the interfaces declared in
   `types/services.ts` (e.g. an `AsyncStorageService implements StorageService`).
   Feature code depends on the interface, never on the concrete library — so we

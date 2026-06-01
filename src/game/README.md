@@ -1,6 +1,6 @@
 # game/
 
-The pure, framework-free game core. Nothing here imports React or Expo, so it
+The pure, framework-free game core. Nothing here imports React or React Native, so it
 runs and unit-tests in plain Node and is reusable across white-labeled builds.
 
 ```

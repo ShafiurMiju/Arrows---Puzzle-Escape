@@ -9,8 +9,8 @@ Planned adapters:
 ```
 services/
 ├── storage/    # AsyncStorageService   implements StorageService     (Phase 7)
-├── audio/      # ExpoAudioService      implements AudioService       (Phase 9)
-├── haptics/    # ExpoHapticsService    implements HapticsService     (Phase 9)
+├── audio/      # RNSoundAudioService   implements AudioService       (Phase 9)
+├── haptics/    # RNHapticsService      implements HapticsService     (Phase 9)
 ├── ads/        # AdMobService          implements AdsService         (Phase 10)
 ├── analytics/  # FirebaseAnalytics…    implements AnalyticsService   (later)
 └── index.ts    # a small service locator / DI container

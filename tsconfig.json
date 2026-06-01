@@ -1,17 +1,22 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "strict": true,
     "resolveJsonModule": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "types": [],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "**/*.tsx"
   ],
-  "exclude": ["node_modules", "dist-test", "**/__tests__/**"]
+  "exclude": [
+    "node_modules",
+    "dist-test",
+    "**/__tests__/**"
+  ]
 }

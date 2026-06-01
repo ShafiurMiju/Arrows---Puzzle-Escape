@@ -1,13 +1,15 @@
-// Metro configuration for Expo. Extends the default config to make sure audio
-// asset extensions used by expo-audio are bundled.
-// https://docs.expo.dev/guides/customizing-metro/
-const { getDefaultConfig } = require('expo/metro-config');
+// Metro configuration for React Native CLI. Extends the default config to make
+// sure audio asset extensions used by react-native-sound are bundled.
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname);
+const defaultConfig = getDefaultConfig(__dirname);
 
-config.resolver.assetExts = Array.from(
-  new Set([...config.resolver.assetExts, 'mp3', 'wav', 'ogg', 'm4a']),
-);
+const config = {
+  resolver: {
+    assetExts: Array.from(
+      new Set([...defaultConfig.resolver.assetExts, 'mp3', 'wav', 'ogg', 'm4a']),
+    ),
+  },
+};
 
-module.exports = config;
+module.exports = mergeConfig(defaultConfig, config);

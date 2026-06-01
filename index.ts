@@ -2,10 +2,9 @@
 // Android builds; a safe no-op on the New Architecture).
 import 'react-native-gesture-handler';
 
-import { registerRootComponent } from 'expo';
+import { AppRegistry } from 'react-native';
 
+import { name as appName } from './app.json';
 import App from './src/App';
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App)
-// and sets up the environment for Expo Go and native dev/release builds alike.
-registerRootComponent(App);
+AppRegistry.registerComponent(appName, () => App);

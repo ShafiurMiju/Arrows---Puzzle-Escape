@@ -1,13 +1,20 @@
-import * as Haptics from 'expo-haptics';
+import ReactNativeHapticFeedback, {
+  type HapticOptions,
+} from 'react-native-haptic-feedback';
 
 import { HapticPattern, HapticsService } from '../../types';
 
 /**
- * `expo-haptics` adapter implementing the {@link HapticsService} port. Haptics
- * are best-effort (silently no-op on unsupported hardware / Low Power Mode) and
+ * `react-native-haptic-feedback` adapter implementing the {@link HapticsService}
+ * port. Haptics are best-effort (silently no-op on unsupported hardware) and
  * gated by the vibration setting. The only module importing the haptics SDK.
  */
-class ExpoHapticsService implements HapticsService {
+const HAPTIC_OPTIONS: HapticOptions = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
+
+class RNHapticsService implements HapticsService {
   private enabled = true;
 
   setEnabled(enabled: boolean): void {
@@ -18,28 +25,27 @@ class ExpoHapticsService implements HapticsService {
     if (!this.enabled) {
       return;
     }
-    const ignore = () => undefined;
     switch (pattern) {
       case 'light':
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(ignore);
+        ReactNativeHapticFeedback.trigger('impactLight', HAPTIC_OPTIONS);
         break;
       case 'medium':
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(ignore);
+        ReactNativeHapticFeedback.trigger('impactMedium', HAPTIC_OPTIONS);
         break;
       case 'heavy':
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy).catch(ignore);
+        ReactNativeHapticFeedback.trigger('impactHeavy', HAPTIC_OPTIONS);
         break;
       case 'selection':
-        Haptics.selectionAsync().catch(ignore);
+        ReactNativeHapticFeedback.trigger('selection', HAPTIC_OPTIONS);
         break;
       case 'success':
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(ignore);
+        ReactNativeHapticFeedback.trigger('notificationSuccess', HAPTIC_OPTIONS);
         break;
       case 'warning':
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(ignore);
+        ReactNativeHapticFeedback.trigger('notificationWarning', HAPTIC_OPTIONS);
         break;
       case 'error':
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(ignore);
+        ReactNativeHapticFeedback.trigger('notificationError', HAPTIC_OPTIONS);
         break;
       default:
         break;
@@ -47,4 +53,4 @@ class ExpoHapticsService implements HapticsService {
   }
 }
 
-export const haptics: HapticsService = new ExpoHapticsService();
+export const haptics: HapticsService = new RNHapticsService();

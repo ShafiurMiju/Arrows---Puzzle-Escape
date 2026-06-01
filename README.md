@@ -1,6 +1,6 @@
 # Arrows – Puzzle Escape
 
-A modern, minimalist Android puzzle game built with React Native + Expo. Guide
+A modern, minimalist Android puzzle game built with React Native (CLI). Guide
 an arrow from the **Start** tile to the **Exit** by rotating arrow tiles and
 outsmarting special mechanics (teleporters, ice, speed pads, switches, and more)
 before pressing **Play**.
@@ -14,14 +14,14 @@ before pressing **Play**.
 
 | Concern              | Choice                                            |
 | -------------------- | ------------------------------------------------- |
-| Framework            | React Native `0.85.3` + **Expo SDK 56**           |
+| Framework            | React Native `0.85.3` (CLI)                      |
 | Language             | TypeScript `~6.0` (strict)                        |
 | Navigation           | React Navigation v7 (native-stack + bottom-tabs)  |
 | State                | Zustand v5                                        |
 | Persistence          | `@react-native-async-storage/async-storage`       |
 | Animation            | React Native Reanimated v4 (+ react-native-worklets) |
-| Audio                | `expo-audio` (expo-av is removed in SDK 56)       |
-| Haptics              | `expo-haptics`                                    |
+| Audio                | `react-native-sound`                              |
+| Haptics              | `react-native-haptic-feedback`                    |
 | Ads                  | `react-native-google-mobile-ads` (AdMob)          |
 | Analytics (reserved) | Firebase Analytics + Crashlytics (ports only)     |
 
@@ -33,9 +33,7 @@ before pressing **Play**.
 
 - Node.js 20+ (project verified on Node 26)
 - A package manager (`npm` is assumed below)
-- For device builds: Android Studio + JDK 17, and an [Expo account](https://expo.dev) for EAS builds
-- **AdMob and Reanimated worklets require native code, so this app does NOT run
-  in Expo Go.** You build a custom *dev client* instead (steps below).
+- For Android builds: Android Studio + JDK 17
 
 ## Installation
 
@@ -43,47 +41,33 @@ before pressing **Play**.
 # 1. Install JS dependencies
 npm install
 
-# 2. Align all Expo-managed native packages to the exact SDK 56 versions
-#    (safe to run; it fixes any drift from npm's standalone latests)
-npx expo install --fix
-
-# 3. Generate placeholder app icons (until final art is added)
+# 2. Generate placeholder app icons (until final art is added)
 npm run assets:icons
 
-# 4. (First time) set up linting — `npx expo lint` scaffolds eslint.config.js
-#    and installs eslint + eslint-config-expo on first run
-npx expo lint
+# 3. Lint the project
+npm run lint
 ```
 
-## Running on Android (custom dev client)
-
-Because of AdMob + Reanimated, use a development build rather than Expo Go:
+## Running on Android
 
 ```bash
-# Option A — build & run locally (requires Android Studio/SDK)
-npx expo run:android          # prebuilds native project, builds, installs
-
-# Option B — build the dev client in the cloud with EAS
-npm i -g eas-cli
-eas login
-eas build --profile development --platform android
-# install the resulting .apk on your device/emulator, then:
-npm start                     # starts Metro for the dev client
+npm run android
 ```
 
-> After changing `app.json` plugin config (e.g. the AdMob App ID) you must
-> re-run `npx expo prebuild --clean` / rebuild the dev client — a JS reload will
-> not pick up native changes.
+If Metro is not running yet, start it in another terminal:
+
+```bash
+npm start
+```
 
 ## Useful scripts
 
 | Script                  | What it does                                  |
 | ----------------------- | --------------------------------------------- |
-| `npm start`             | Start Metro for the dev client                |
-| `npm run android`       | Prebuild + build + run on Android             |
+| `npm start`             | Start Metro                                   |
+| `npm run android`       | Build + run on Android                        |
 | `npm run typecheck`     | `tsc --noEmit`                                |
-| `npm run lint`          | `expo lint`                                   |
-| `npm run prebuild:clean`| Regenerate native projects from `app.json`    |
+| `npm run lint`          | `eslint . --ext .ts,.tsx`                     |
 | `npm run assets:icons`  | Regenerate placeholder icons                  |
 
 ---
@@ -95,14 +79,14 @@ See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for the full layering explanation.
 ```
 .
 ├── package.json          # dependencies & npm scripts
-├── app.json              # Expo config (plugins, AdMob App ID, Android settings)
-├── eas.json              # EAS build profiles (development / preview / production)
-├── babel.config.js       # babel-preset-expo (auto-manages Reanimated/worklets)
+├── app.json              # React Native app config (name/displayName)
+├── eas.json              # Legacy Expo build profiles (unused in CLI builds)
+├── babel.config.js       # metro-react-native-babel-preset + worklets plugin
 ├── metro.config.js       # Metro config (audio asset extensions)
 ├── tsconfig.json         # strict TS, "@/*" path alias → src/*
 ├── .prettierrc           # Prettier formatting config
 ├── .gitignore            # ignored files (node_modules, native dirs, …)
-├── index.ts              # entry: registerRootComponent(App)
+├── index.ts              # entry: AppRegistry.registerComponent
 ├── scripts/              # dev tooling (placeholder icon generator)
 └── src/
     ├── App.tsx           # root component + providers + splash flow
@@ -154,18 +138,16 @@ animations) are verified by `tsc` and on-device runs.
 This project has been built and verified via `tsc` + unit tests, but **not yet run
 on a device**. Before publishing:
 
-1. **Run it on Android** (custom dev client — AdMob + Reanimated need native code):
-   `npx expo run:android`, or `eas build --profile development`.
-2. **Link EAS**: `eas init` (populates `extra.eas.projectId`), then
-   `eas build --profile production --platform android` for an `.aab`.
+1. **Run it on Android**: `npm run android`.
+2. **Build a release**: open Android Studio or run `./gradlew bundleRelease`.
 3. **Real assets**: replace the placeholder icons (`npm run assets:icons`) and
    synthesized sounds (`npm run assets:sounds`) under `src/assets/` with final art/audio.
-4. **Real AdMob**: set the production App ID in `app.json` and the real ad-unit ids
-   in `src/constants/ads.ts` (`ProdAdUnitIds`). Keep test ids in dev — never click
-   live ads on your own account.
+4. **Real AdMob**: set the production App ID in `android/app/src/main/AndroidManifest.xml`
+   and the real ad-unit ids in `src/constants/ads.ts` (`ProdAdUnitIds`). Keep test ids
+   in dev — never click live ads on your own account.
 5. **Analytics (optional)**: drop a Firebase Analytics + Crashlytics adapter behind
    the existing `AnalyticsService` port (`src/services/analytics`) — no call sites change.
 6. **In-app purchase (optional)**: implement the reserved `PurchaseService` port to
    make "Remove Ads" a real purchase (it's a placeholder flag today).
-7. **Lint**: `npx expo lint` (scaffolds ESLint on first run).
-8. **Bump** `version` + `android.versionCode` in `app.json` per release.
+7. **Lint**: `npm run lint`.
+8. **Bump** `versionName` + `versionCode` in `android/app/build.gradle` per release.

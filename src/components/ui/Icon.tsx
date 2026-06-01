@@ -1,12 +1,11 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { palette } from '../../constants';
 
 /**
  * Semantic icon names used across the app. Mapping to a concrete icon set lives
- * here so the underlying library can be swapped in one place. `@expo/vector-icons`
- * is declared as a direct dependency (see package.json) so module resolution
- * never relies on transitive hoisting.
+ * here so the underlying library can be swapped in one place. This app uses
+ * `react-native-vector-icons` directly in the React Native CLI setup.
  */
 export type IconName =
   | 'back'
@@ -37,7 +36,7 @@ export type IconName =
   | 'toggle'
   | 'arrow';
 
-const GLYPHS: Record<IconName, keyof typeof Ionicons.glyphMap> = {
+const GLYPHS: Record<IconName, string> = {
   back: 'chevron-back',
   close: 'close',
   play: 'play',

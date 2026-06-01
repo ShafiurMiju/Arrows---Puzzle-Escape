@@ -1,22 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { palette } from './constants';
 import { RootNavigator } from './navigation/RootNavigator';
 import { ads } from './services/ads';
 import { analytics } from './services/analytics';
 import { audio } from './services/audio';
 import { haptics } from './services/haptics';
 import { useProgressStore, useSettingsStore } from './store';
-
-// Keep the native splash visible until persisted state has hydrated.
-SplashScreen.preventAutoHideAsync().catch(() => {
-  /* ignore — splash may already be hidden in dev */
-});
 
 /**
  * Root component: providers + navigation. The persisted progress/settings stores
@@ -29,10 +23,6 @@ export default function App() {
   const settingsHydrated = useSettingsStore((s) => s.hasHydrated);
   const settings = useSettingsStore((s) => s.settings);
   const isReady = progressHydrated && settingsHydrated;
-
-  const onNavigationReady = useCallback(() => {
-    SplashScreen.hideAsync().catch(() => undefined);
-  }, []);
 
   // Initialise audio once ready (after hydration), then apply persisted settings.
   useEffect(() => {
@@ -76,15 +66,19 @@ export default function App() {
   ]);
 
   if (!isReady) {
-    return null; // native splash remains visible while stores hydrate
+    return (
+      <View style={styles.splash}>
+        <ActivityIndicator size="large" color={palette.primary} />
+      </View>
+    );
   }
 
   return (
     <GestureHandlerRootView style={styles.flex}>
       <SafeAreaProvider>
-        <StatusBar style="light" />
+        <StatusBar barStyle="light-content" backgroundColor={palette.background} />
         <ErrorBoundary>
-          <RootNavigator onReady={onNavigationReady} />
+          <RootNavigator />
         </ErrorBoundary>
       </SafeAreaProvider>
     </GestureHandlerRootView>
@@ -94,5 +88,11 @@ export default function App() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  splash: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: palette.background,
   },
 });

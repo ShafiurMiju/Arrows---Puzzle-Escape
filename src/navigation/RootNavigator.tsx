@@ -38,7 +38,7 @@ const navigationTheme: Theme = {
 };
 
 export interface RootNavigatorProps {
-  /** Called once the navigation tree is mounted — used to hide the native splash. */
+  /** Called once the navigation tree is mounted (optional hook for boot flow). */
   onReady?: () => void;
 }
 

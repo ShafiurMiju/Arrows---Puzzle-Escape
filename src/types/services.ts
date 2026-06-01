@@ -3,9 +3,9 @@ import { LevelResult } from './game';
 /**
  * Service "ports" (Clean Architecture). The app's UI, stores, and game logic
  * depend ONLY on these interfaces — never on a concrete SDK. Adapters that wrap
- * AsyncStorage, expo-audio, expo-haptics, AdMob, and Firebase implement them in
- * `src/services` (later phases). This keeps the domain testable and lets us
- * swap or stub any provider (and add IAP) without touching feature code.
+ * AsyncStorage, react-native-sound, react-native-haptic-feedback, AdMob, and
+ * Firebase implement them in `src/services`. This keeps the domain testable and
+ * lets us swap or stub any provider (and add IAP) without touching feature code.
  */
 
 /** Key-value persistence (AsyncStorage adapter behind it). */
@@ -24,7 +24,7 @@ export type SoundEffectName =
   | 'failure'
   | 'star';
 
-/** Background music + one-shot effects (expo-audio adapter behind it). */
+/** Background music + one-shot effects (react-native-sound adapter behind it). */
 export interface AudioService {
   init(): Promise<void>;
   playMusic(): Promise<void>;
@@ -44,7 +44,7 @@ export type HapticPattern =
   | 'warning'
   | 'error';
 
-/** Vibration / haptic feedback (expo-haptics adapter behind it). */
+/** Vibration / haptic feedback (react-native-haptic-feedback adapter behind it). */
 export interface HapticsService {
   setEnabled(enabled: boolean): void;
   trigger(pattern: HapticPattern): void;
